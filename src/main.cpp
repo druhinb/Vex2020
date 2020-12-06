@@ -79,11 +79,18 @@ void autonomous() {}
 		 }
 
 		 //Computation for lateral movement
+		 //FIRST ONE IS TANK, SECOND ONE IS ARCADE, UNCOMMENT AND RECOMMENT AS YOU SEE FIT.
 		 LF_drive.move(motor_speed * y_left_stick);
 		 LB_drive.move(motor_speed * y_right_stick);
 		 RF_drive.move(motor_speed * y_left_stick);
 		 RB_drive.move(motor_speed * y_right_stick);
 
+		 /*
+		 LF_drive.move(motor_speed * y_left_stick + y_right_stick);
+		 LF_drive.move(motor_speed * y_left_stick + y_right_stick)
+		 LF_drive.move(motor_speed * y_left_stick - y_right_stick)
+		 LF_drive.move(motor_speed * y_left_stick - y_right_stick)
+     */
 
 		 //Horizontal Intaking/Outtaking, will hold when no input detected
      if (master.get_digital(DIGITAL_L1) > 0)
@@ -117,6 +124,27 @@ void autonomous() {}
 			 vertical_intake.set_brake_mode(MOTOR_BRAKE_HOLD);
 		 }
 
+		 //LEGACY INTAKING/OUTTAKING, UNCOMMENT AND RECOMMENT THE ABOVE AS NECESSARY
+    /*
+		 if (master.get_digital(DIGITAL_R1))
+		 {
+			 r_horizontal_intake.move(100);
+			 l_horizontal_intake.move(100);
+			 vertical_intake.move(600);
+		 }
+		 else if (master.get_digital(DIGITAL_R2))
+		 {
+			 r_horizontal_intake.move(-100);
+			 l_horizontal_intake.move(-100);
+			 vertical_intake.move(-600);
+		 }
+		 else
+		 {
+			 r_horizontal_intake.set_brake_mode(MOTOR_BRAKE_HOLD);
+			 l_horizontal_intake.set_brake_mode(MOTOR_BRAKE_HOLD);
+			 vertical_intake.set_brake_mode(MOTOR_BRAKE_HOLD);
+		 }
+		 */
      pros::delay(2);
    }
  }
