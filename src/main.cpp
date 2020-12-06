@@ -67,6 +67,10 @@ void autonomous() {}
 		 else
 		 {
 			 y_left_stick = 0;
+			 LF_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
+			 RF_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
+			 LB_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
+			 RB_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
 		 }
 
 		 if (abs(master.get_analog(ANALOG_LEFT_X)) > threshold)
@@ -76,6 +80,10 @@ void autonomous() {}
 		 else
 		 {
 			 y_right_stick = 0;
+			 LF_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
+			 RF_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
+			 LB_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
+			 RB_drive.set_brake_mode(MOTOR_BRAKE_BRAKE);
 		 }
 
 		 //Computation for lateral movement
