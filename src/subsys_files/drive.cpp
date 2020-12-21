@@ -1,11 +1,29 @@
 #include "main.h"
 
+pros::ADIGyro gyro('B');
+
 void setDrive(int left, int right)
 {
   LF_drive = left;
   LB_drive = left;
   RF_drive = right;
   RB_drive = right;
+}
+
+void resetDriveEncoders()
+{
+  LF_drive.tare_position();
+  LB_drive.tare_position();
+  RF_drive.tare_position();
+  RB_drive.tare_position();
+}
+
+double averageDriveEncoderValue()
+{
+  return (fabs(LF_drive.get_position())+
+          fabs(LB_drive.get_position())+
+          fabs(RF_drive.get_position())+
+          fabs(RB_drive.get_position())) / 4;
 }
 //Driver Control Functions
 void setDriveMotors()
@@ -18,4 +36,60 @@ void setDriveMotors()
   if (abs(right_joystick) < 10)
     right_joystick = 0;
   setDrive(left_joystick, right_joystick);
+}
+
+void setAllBrake()
+{
+  LB_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  RB_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  LF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  RF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  l_horizontal_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  r_horizontal_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  vertical_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+}
+
+void transcribe(int units, int voltage)
+{
+  int direction = abs(units) / units;
+  //reset motor encoders
+  resetDriveEncoders();
+  gyro.reset();
+  //drive forward until units are reached
+  while(averageDriveEncoderValue() < abs(units))
+  {
+    setDrive(voltage * direction + gyro.get_value(), voltage * direction - gyro.get_value());
+    pros::delay(10);
+  }
+  //brief brake
+  setDrive(-10 * direction, -10 * direction);
+  pros::delay(50);
+  //set drive back to neutral
+  setDrive(0, 0);
+}
+
+void rotate(int degrees, int voltage)
+{
+  int direction = abs(degrees) / degrees;
+  gyro.reset();
+  
+  setDrive(-voltage * direction, voltage * direction);
+  while(fabs(gyro.get_value()) < abs(degrees * 10) - 50)
+    pros::delay(10);
+
+  pros::delay(100);
+  if(fabs(gyro.get_value()) > abs(degrees * 10))
+  {
+    setDrive(0.5 * voltage * direction, 0.5 * -voltage * direction);
+    while(fabs(gyro.get_value()) > abs(degrees * 10))
+      pros::delay(10);
+  }
+  else if (fabs(gyro.get_value()) < abs(degrees * 10))
+  {
+    setDrive(0.5 * -voltage * direction, 0.5 * voltage * direction);
+    while(fabs(gyro.get_value()) > abs(degrees * 10))
+      pros::delay(10);
+  }
+
+  setDrive(0, 0);
 }

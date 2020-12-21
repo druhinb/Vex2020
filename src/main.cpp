@@ -15,20 +15,23 @@ void on_center_button()
 }
 
 
-void initialize() {
+void initialize()
+{
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "SKYNET INITIATED. LAUNCHING NUCLEAR WEAPONS.");
-
-	pros::lcd::register_btn1_cb(on_center_button);
+  setAllBrake();
+  pros::ADIGyro gyro('B');
+  pros::delay(2000);
 }
 
 //not important...
-void disabled() {}
+void disabled()
+{
+
+}
 
 //not important...
-void competition_initialize() {}
-
-void redLeftCorner()
+void competition_initialize()
 {
 
 }

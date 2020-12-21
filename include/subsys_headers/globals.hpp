@@ -11,3 +11,6 @@ extern pros::Motor l_horizontal_intake;
 
 //CONTROLLER
 extern pros::Controller controller;
+
+//MISCELLANEOUS
+extern pros::ADIGyro gyro;
