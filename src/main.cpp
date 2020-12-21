@@ -38,6 +38,9 @@ void competition_initialize()
 
 void autonomous()
 {
+  setIntake(127);
+  transcribe(500, 100); //sample autonomous
+  rotate(90, 50);
 
 }
 
