@@ -31,8 +31,11 @@ void disabled() {}
 //not important...
 void competition_initialize() {}
 
-//todo later
-void autonomous() {}
+
+void autonomous()
+{
+
+}
 
 
 //Main driving control schematics

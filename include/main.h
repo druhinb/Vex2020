@@ -72,9 +72,11 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-/**
- * You can add C++-only headers here
- */
+#include "subsys_headers/intake.hpp"
+#include "subsys_headers/drive.hpp"
+#include "subsys_headers/globals.hpp"
+#include "subsys_headers/vIntake.hpp"
+#include "subsys_headers/angles.hpp"
 //#include <iostream>
 #endif
 
