@@ -72,7 +72,7 @@ void rotate(int degrees, int voltage)
 {
   int direction = abs(degrees) / degrees;
   gyro.reset();
-  
+
   setDrive(-voltage * direction, voltage * direction);
   while(fabs(gyro.get_value()) < abs(degrees * 10) - 50)
     pros::delay(10);
