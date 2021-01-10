@@ -17,6 +17,7 @@ void on_center_button()
 
 void initialize()
 {
+  //test comment
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "SKYNET INITIATED. LAUNCHING NUCLEAR WEAPONS.");
   setAllBrake();
