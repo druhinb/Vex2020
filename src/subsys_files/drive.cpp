@@ -58,6 +58,7 @@ void transcribe(int units, int voltage)
   //drive forward until units are reached
   while(averageDriveEncoderValue() < abs(units))
   {
+    //sets the drive to the desired voltage while accounting for the gyro correction
     setDrive(voltage * direction + gyro.get_value(), voltage * direction - gyro.get_value());
     pros::delay(10);
   }
@@ -70,20 +71,24 @@ void transcribe(int units, int voltage)
 
 void rotate(int degrees, int voltage)
 {
+  //calculates direction based on a simple algorithm
   int direction = abs(degrees) / degrees;
   gyro.reset();
 
+//since drive will move at same speed, no need to put it in while loop
   setDrive(-voltage * direction, voltage * direction);
   while(fabs(gyro.get_value()) < abs(degrees * 10) - 50)
     pros::delay(10);
 
   pros::delay(100);
+  //if overshot
   if(fabs(gyro.get_value()) > abs(degrees * 10))
   {
     setDrive(0.5 * voltage * direction, 0.5 * -voltage * direction);
     while(fabs(gyro.get_value()) > abs(degrees * 10))
       pros::delay(10);
   }
+  //if undershot
   else if (fabs(gyro.get_value()) < abs(degrees * 10))
   {
     setDrive(0.5 * -voltage * direction, 0.5 * voltage * direction);
@@ -91,5 +96,6 @@ void rotate(int degrees, int voltage)
       pros::delay(10);
   }
 
+  //stops drive
   setDrive(0, 0);
 }
