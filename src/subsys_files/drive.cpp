@@ -12,17 +12,17 @@ void setDrive(int left, int right)
 
 void resetDriveEncoders()
 {
-  LF_drive.tare_position();
+  //LF_drive.tare_position();
   LB_drive.tare_position();
-  RF_drive.tare_position();
+  //RF_drive.tare_position();
   RB_drive.tare_position();
 }
 
 double averageDriveEncoderValue()
 {
-  return (fabs(LF_drive.get_position())+
+  return (fabs(//LF_drive.get_position())+
           fabs(LB_drive.get_position())+
-          fabs(RF_drive.get_position())+
+          fabs(//RF_drive.get_position())+
           fabs(RB_drive.get_position())) / 4;
 }
 //Driver Control Functions
@@ -42,8 +42,8 @@ void setAllBrake()
 {
   LB_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   RB_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-  LF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-  RF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  //LF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  //RF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   l_horizontal_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   r_horizontal_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   vertical_intake_L.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
