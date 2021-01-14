@@ -46,7 +46,8 @@ void setAllBrake()
   RF_drive.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   l_horizontal_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   r_horizontal_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  vertical_intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  vertical_intake_L.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  vertical_intake_U.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
 void transcribe(int units, int voltage)
