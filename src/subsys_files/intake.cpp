@@ -3,7 +3,7 @@
 void setIntake(int power)
 {
   l_horizontal_intake = power;
-  r_horizontal_intake = power;
+  r_horizontal_intake = -power;
 }
 
 void setIntakeMotors()
