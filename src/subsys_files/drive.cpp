@@ -4,9 +4,9 @@ pros::ADIGyro gyro('B');
 
 void setDrive(int left, int right)
 {
-  LF_drive = left;
+  //LF_drive = left;
   LB_drive = left;
-  RF_drive = right;
+  //RF_drive = right;
   RB_drive = right;
 }
 
@@ -20,9 +20,9 @@ void resetDriveEncoders()
 
 double averageDriveEncoderValue()
 {
-  return (fabs(//LF_drive.get_position())+
+  return (//fabs(LF_drive.get_position())+
           fabs(LB_drive.get_position())+
-          fabs(//RF_drive.get_position())+
+          //fabs(RF_drive.get_position())+
           fabs(RB_drive.get_position())) / 4;
 }
 //Driver Control Functions
