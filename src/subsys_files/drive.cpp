@@ -29,13 +29,21 @@ double averageDriveEncoderValue()
 void setDriveMotors()
 {
   setDrive(0, 0);
-  int left_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-  int right_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+  int left_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+  //uncomment out below line for tank control
+  //int right_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+
+  //comment out the below line to remove arcade control
+  int right_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   if(abs(left_joystick) < 10)
     left_joystick = 0;
   if (abs(right_joystick) < 10)
     right_joystick = 0;
-  setDrive(left_joystick, right_joystick);
+  //uncomment out the below line for tank control
+  //setDrive(left_joystick, right_joystick);
+
+  //comment out the below line to remove arcade control
+  setDrive(left_joystick + right_joystick / 2, left_joystick - right_joystick / 2);
 }
 
 void setAllBrake()
