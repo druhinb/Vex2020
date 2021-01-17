@@ -40,8 +40,8 @@ void competition_initialize()
 void autonomous()
 {
   setIntake(127);
-  transcribe(500, 100); //sample autonomous
-  rotate(90, 50);
+  autonChassis.moveDistance(1_m);
+  autonChassis.turnAngle(90_deg);
 }
 
 void opcontrol()
