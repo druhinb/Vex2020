@@ -1,5 +1,4 @@
 #include "main.h"
-using namespace okapi;
 
 
 void on_center_button()
@@ -25,6 +24,7 @@ void initialize()
   setAllBrake();
   pros::ADIGyro gyro('B');
   pros::delay(2000);
+
 }
 
 //not important...
@@ -41,9 +41,20 @@ void competition_initialize()
 
 void autonomous()
 {
+  std::shared_ptr<ChassisController> chassisAuton = ChassisControllerBuilder()
+      .withMotors(1, -10) // left motor is 1, right motor is 2 (reversed)
+      .withGains(
+          {0.001, 0, 0.0001}, // Distance controller gains
+          {0.001, 0, 0.0001}, // Turn controller gains
+          {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
+      )
+      // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+      .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+      .build(); // build an odometry chassis
+  chassisAuton->moveDistance(1_m);
+  chassisAuton->turnAngle(90_deg);
   setIntake(127);
-  autonChassis.moveDistance(1_m);
-  autonChassis.turnAngle(90_deg);
+
 }
 
 void opcontrol()

@@ -1,18 +1,9 @@
-#include "main.h"
+#include "main.h";
 
-using namespace okapi;
+pros::ADIGyro gyro(9);
 
-pros::ADIGyro gyro('B');
 
-auto autonChassis = ChassisControllerFactory::create(
-  1, 10,
-  IterativePosPIDController::Gains{0.001, 0, 0.0001},
-  IterativePosPIDController::Gains{0.001, 0, 0.0001},
-  IterativePosPIDController::Gains{0.001, 0, 0.0001},
-  AbstractMotor::gearset::green,
-  //have to change below chassis dimensions
-  {2.75_in, 10.5_in}
-);
+
 
 void setDrive(int left, int right)
 {
