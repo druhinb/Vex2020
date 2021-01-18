@@ -42,7 +42,9 @@ void competition_initialize()
 void autonomous()
 {
   std::shared_ptr<ChassisController> chassisAuton = ChassisControllerBuilder()
-      .withMotors(1, -10) // left motor is 1, right motor is 2 (reversed)
+      .withMotors(
+        {-1, -2}, //left motors are ports 1 and 2
+        {10, 20} //right motors are ports 10 and 20
       .withGains(
           {0.001, 0, 0.0001}, // Distance controller gains
           {0.001, 0, 0.0001}, // Turn controller gains
