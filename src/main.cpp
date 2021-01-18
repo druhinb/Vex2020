@@ -20,9 +20,9 @@ void initialize()
 {
   //test comment
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Orion Robotics");
+	pros::lcd::set_text(1, "'Boom Boom' said Mr. Doom");
   setAllBrake();
-  pros::ADIGyro gyro('B');
+  pros::ADIGyro gyro(9);
   pros::delay(2000);
 
 }
@@ -43,8 +43,8 @@ void autonomous()
 {
   std::shared_ptr<ChassisController> chassisAuton = ChassisControllerBuilder()
       .withMotors(
-        {-1, -12}, //left motors are ports 1 and 2
-        {10, 19}
+        {1, 12}, //left motors are ports 1 and 2
+        {-10, -19}
       )  //right motors are ports 10 and 20
       .withGains( //initializing integrated PID system
           {0.001, 0, 0.0001}, // Distance controller gains

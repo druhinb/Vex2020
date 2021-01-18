@@ -46,7 +46,7 @@ void setDriveMotors()
   //setDrive(left_joystick, right_joystick);
 
   //comment out the below line to remove arcade control
-  setDrive(left_joystick + right_joystick / 2, left_joystick - right_joystick / 2);
+  setDrive(left_joystick + right_joystick, left_joystick - right_joystick);
 }
 
 void setAllBrake()
