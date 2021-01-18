@@ -51,7 +51,7 @@ void autonomous()
           {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
       )
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-      .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+      .withDimensions(AbstractMotor::gearset::green, {{3.25_in, 13_in}, imev5GreenTPR})
       .build(); // build an odometry chassis
   chassisAuton->moveDistanceAsync(1_m);
   chassisAuton->turnAngle(90_deg);
