@@ -43,8 +43,9 @@ void autonomous()
 {
   std::shared_ptr<ChassisController> chassisAuton = ChassisControllerBuilder()
       .withMotors(
-        {-1, -2}, //left motors are ports 1 and 2
-        {10, 20}  //right motors are ports 10 and 20
+        {-1, -12}, //left motors are ports 1 and 2
+        {10, 19}
+      )  //right motors are ports 10 and 20
       .withGains( //initializing integrated PID system
           {0.001, 0, 0.0001}, // Distance controller gains
           {0.001, 0, 0.0001}, // Turn controller gains
@@ -64,7 +65,7 @@ void opcontrol()
 {
   while (true)
   {
-    setDriveMotors();
+    //setDriveMotors();
     setIntakeMotors();
     setIntakeMotor();
     pros::delay(10);
