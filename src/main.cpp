@@ -20,7 +20,7 @@ void initialize()
 {
   //test comment
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "SKYNET INITIATED. LAUNCHING NUCLEAR WEAPONS.");
+	pros::lcd::set_text(1, "Orion Robotics");
   setAllBrake();
   pros::ADIGyro gyro('B');
   pros::delay(2000);
@@ -65,7 +65,7 @@ void opcontrol()
 {
   while (true)
   {
-    //setDriveMotors();
+    setDriveMotors();
     setIntakeMotors();
     setIntakeMotor();
     pros::delay(10);
