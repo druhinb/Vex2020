@@ -20,9 +20,9 @@ void initialize()
 {
   //test comment
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "'Boom Boom' said Mr. Doom");
+	pros::lcd::set_text(1, "'Hello There' said Mr. Doom");
   setAllBrake();
-  pros::ADIGyro gyro(9);
+  pros::ADIGyro gyrolll(9);
   pros::delay(2000);
 
 }
@@ -54,10 +54,10 @@ void autonomous()
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
       .withDimensions(AbstractMotor::gearset::green, {{3.25_in, 13_in}, imev5GreenTPR})
       .build(); // build an odometry chassis
-  chassisAuton->moveDistance(1_m);
-  chassisAuton->turnAngle(90_deg);
+  //chassisAuton->moveDistance(1_m);
+  //chassisAuton->turnAngle(90_deg);
   setIntake(127);
-  setIntake(0);
+  setVIntake(127);
 
 }
 

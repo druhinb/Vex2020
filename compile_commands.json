@@ -104,11 +104,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/globals.cpp.o",
-            "src\\subsys_files\\globals.cpp"
+            "bin/subsys_files/drive.cpp.o",
+            "src\\subsys_files\\drive.cpp"
         ],
         "directory": "C:\\Users\\anivi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\globals.cpp"
+        "file": "src\\subsys_files\\drive.cpp"
     },
     {
         "arguments": [
@@ -141,11 +141,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/drive.cpp.o",
-            "src\\subsys_files\\drive.cpp"
+            "bin/subsys_files/globals.cpp.o",
+            "src\\subsys_files\\globals.cpp"
         ],
         "directory": "C:\\Users\\anivi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\drive.cpp"
+        "file": "src\\subsys_files\\globals.cpp"
     },
     {
         "arguments": [
