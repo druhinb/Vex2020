@@ -51,9 +51,10 @@ void autonomous()
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
       .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
       .build(); // build an odometry chassis
-  chassisAuton->moveDistance(1_m);
+  chassisAuton->moveDistanceAsync(1_m);
   chassisAuton->turnAngle(90_deg);
   setIntake(127);
+  setIntake(0);
 
 }
 
