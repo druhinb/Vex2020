@@ -3,7 +3,10 @@
 pros::ADIGyro gyro(9);
 
 
-
+void getExponentialCurveVal(int joystickValue)
+{
+  return (1.2 * pow(1.0356, abs(joystickValue)) - 1.2 + 0.2 * abs(joystickValue));
+}
 
 void setDrive(int left, int right)
 {
@@ -32,12 +35,12 @@ double averageDriveEncoderValue()
 void setDriveMotors()
 {
   setDrive(0, 0);
-  int left_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+  int left_joystick = getExponentialCurveVal(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X));
   //uncomment out below line for tank control
   //int right_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
   //comment out the below line to remove arcade control
-  int right_joystick = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+  int right_joystick = getExponentialCurveVal(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
   if(abs(left_joystick) < 10)
     left_joystick = 0;
   if (abs(right_joystick) < 10)
