@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 void on_center_button()
 {
   static bool pressed = false;
@@ -51,11 +50,24 @@ void autonomous()
           {0.001, 0, 0.0001}, // Turn controller gains
           {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
       )
+      .withDerivativeFilters(
+       std::make_unique<AverageFilter<3>>(), // Distance controller filter
+       std::make_unique<AverageFilter<3>>(), // Turn controller filter
+       std::make_unique<AverageFilter<3>>()  // Angle controller filter
+   )
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-      .withDimensions(AbstractMotor::gearset::green, {{3.25_in, 13_in}, imev5GreenTPR})
+      .withDimensions(AbstractMotor::gearset::green, {{3.25_in, 12.5_in}, imev5GreenTPR})
       .build(); // build an odometry chassis
-  //chassisAuton->moveDistance(1_m);
-  //chassisAuton->turnAngle(90_deg);
+
+    auto profileController = AsyncControllerFactory::motionProfile(
+    1.0,  // Maximum linear velocity of the Chassis in m/s
+    2.0,  // Maximum linear acceleration of the Chassis in m/s/s
+    10.0, // Maximum linear jerk of the Chassis in m/s/s/s
+    chassisAuton // Chassis Controller
+  );
+  chassisAuton->moveDistance(1_m);
+  chassisAuton->turnAngle(90_deg);
+
   setIntake(127);
   setVIntake(127);
 
