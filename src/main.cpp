@@ -47,7 +47,7 @@ void autonomous()
       )  //right motors are ports 10 and 20
 
       .withGains( //initializing integrated PID system
-          {0.00034, 0.0009, 0.00008}, // Distance controller gains
+          {0.00034, 0.001, 0}, // Distance controller gains
           {0.003, 0.0009, 0.00008}, // Turn controller gains
           {0.00038, 0.00080, 0.00008}  // Angle controller gains (helps drive straight)
       )
@@ -84,7 +84,7 @@ void autonomous()
   pros::delay(300);
   setVIntake(0);
 
-  chassisAuton->turnAngle(-46_deg);
+  chassisAuton->turnAngle(-45_deg);
   chassisAuton->moveDistance(11_in);
     setVIntake(-127);
     pros::delay(1500);
@@ -92,7 +92,7 @@ void autonomous()
   chassisAuton->moveDistance(-11_in);
 
   setIntake(127);
-  chassisAuton->turnAngle(135_deg);
+  chassisAuton->turnAngle(130_deg);
   chassisAuton->moveDistance(48_in);
   chassisAuton->turnAngle(-90_deg);
   setIntake(0);
