@@ -45,21 +45,30 @@ void autonomous()
         {1, 12}, //left motors are ports 1 and 2
         {-10, -19}
       )  //right motors are ports 10 and 20
+
       .withGains( //initializing integrated PID system
-          {0.0020, 0.00001, 0}, // Distance controller gains
-          {0.003, 0.00001, 0}, // Turn controller gains
-          {0.002, 0.00001, 0.00006}  // Angle controller gains (helps drive straight)
+          {0.00034, 0.0009, 0.00008}, // Distance controller gains
+          {0.003, 0.0009, 0.00008}, // Turn controller gains
+          {0.00038, 0.00080, 0.00008}  // Angle controller gains (helps drive straight)
       )
-      .withDerivativeFilters(
-       std::make_unique<AverageFilter<3>>(), // Distance controller filter
-       std::make_unique<AverageFilter<3>>(), // Turn controller filter
-       std::make_unique<AverageFilter<3>>()  // Angle controller filter
-   )
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
       .withDimensions(AbstractMotor::gearset::green, {{3.25_in, 9.5_in}, imev5GreenTPR})
       .build(); // build an odometry chassis
 
-  chassisAuton->setMaxVelocity(100);
+      std::shared_ptr<AsyncMotionProfileController> profileController =
+        AsyncMotionProfileControllerBuilder()
+          .withLimits({
+            1.0, // Maximum linear velocity of the Chassis in m/s
+            1.0, // Maximum linear acceleration of the Chassis in m/s/s
+            5.0 // Maximum linear jerk of the Chassis in m/s/s/s
+          })
+          .withOutput(chassisAuton)
+          .buildMotionProfileController();
+
+  chassisAuton->setMaxVelocity(200);
+
+
+
   setVIntake(-127);
   pros::delay(1000);
   setVIntake(0);
@@ -67,7 +76,7 @@ void autonomous()
   setIntake(127);
   chassisAuton->moveDistance(16_in);
   pros::delay(500);
-  chassisAuton->turnAngle(-100_deg);
+  chassisAuton->turnAngle(-90_deg);
   chassisAuton->moveDistance(12_in);
   setIntake(0);
 
@@ -75,7 +84,7 @@ void autonomous()
   pros::delay(300);
   setVIntake(0);
 
-  chassisAuton->turnAngle(-57_deg);
+  chassisAuton->turnAngle(-46_deg);
   chassisAuton->moveDistance(11_in);
     setVIntake(-127);
     pros::delay(1500);
@@ -83,9 +92,9 @@ void autonomous()
   chassisAuton->moveDistance(-11_in);
 
   setIntake(127);
-  chassisAuton->turnAngle(150_deg);
+  chassisAuton->turnAngle(135_deg);
   chassisAuton->moveDistance(48_in);
-  chassisAuton->turnAngle(-107_deg);
+  chassisAuton->turnAngle(-90_deg);
   setIntake(0);
   chassisAuton->moveDistance(5_in);
   setVIntake(-127);
@@ -93,15 +102,15 @@ void autonomous()
   setVIntake(0);
   chassisAuton->moveDistance(-5.5_in);
   setIntake(127);
-  chassisAuton->turnAngle(200_deg);
+  chassisAuton->turnAngle(180_deg);
 
   chassisAuton->moveDistance(17_in);
   setVIntake(-127);
   pros::delay(300);
   setVIntake(0);
-  chassisAuton->turnAngle(48_deg);
+  chassisAuton->turnAngle(45_deg);
   chassisAuton->moveDistance(34_in);
-  chassisAuton->turnAngle(63_deg);
+  chassisAuton->turnAngle(57_deg);
   setIntake(0);
   chassisAuton->moveDistance(31_in);
   setVIntake(-127);
@@ -111,16 +120,18 @@ void autonomous()
 
   setIntake(127);
   //this was the area we need to fix
-  chassisAuton->turnAngle(-95_deg);
+  chassisAuton->turnAngle(-90_deg);
   chassisAuton->setMaxVelocity(75);
   chassisAuton->moveDistance(42_in);
-  chassisAuton->turnAngle(47_deg);
+  chassisAuton->turnAngle(45_deg);
   setIntake(0);
   chassisAuton->moveDistance(17_in);
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
   chassisAuton->moveDistance(-17_in);
+
+
   /*
   setIntake(127);
   chassisAuton->turnAngle(-84_deg);
