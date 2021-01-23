@@ -95,31 +95,32 @@ void autonomous()
   setIntake(127);
   chassisAuton->turnAngle(200_deg);
 
-  chassisAuton->moveDistance(16_in);
+  chassisAuton->moveDistance(17_in);
   setVIntake(-127);
   pros::delay(300);
   setVIntake(0);
-  chassisAuton->turnAngle(50_deg);
+  chassisAuton->turnAngle(48_deg);
   chassisAuton->moveDistance(34_in);
-  chassisAuton->turnAngle(60_deg);
+  chassisAuton->turnAngle(63_deg);
   setIntake(0);
-  chassisAuton->moveDistance(32_in);
+  chassisAuton->moveDistance(31_in);
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
-  chassisAuton->moveDistance(-5.5_in);
+  chassisAuton->moveDistance(-6.5_in);
 
   setIntake(127);
   //this was the area we need to fix
-  chassisAuton->turnAngle(-100_deg);
+  chassisAuton->turnAngle(-95_deg);
+  chassisAuton->setMaxVelocity(75);
   chassisAuton->moveDistance(42_in);
   chassisAuton->turnAngle(47_deg);
   setIntake(0);
-  chassisAuton->moveDistance(16_in);
+  chassisAuton->moveDistance(17_in);
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
-  chassisAuton->moveDistance(-16_in);
+  chassisAuton->moveDistance(-17_in);
   /*
   setIntake(127);
   chassisAuton->turnAngle(-84_deg);
