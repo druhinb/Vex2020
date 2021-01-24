@@ -65,14 +65,142 @@ void autonomous()
           .withOutput(chassisAuton)
           .buildMotionProfileController();
 
-  chassisAuton->setMaxVelocity(200);
+  chassisAuton->setMaxVelocity(150);
 
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-16_in, 0_in, 0_deg}}, "A1");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-12_in, 0_in, 0_deg}}, "B1");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-48_in, 0_in, 0_deg}}, "C1");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-31_in, 0_in, 0_deg}}, "C2");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-34_in, 0_in, 0_deg}}, "C3");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-42_in, 0_in, 0_deg}}, "C4");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-5_in, 0_in, 0_deg}}, "D1");
+  profileController->generatePath({{0_in, 0_in, 0_deg}, {-6.5_in, 0_in, 0_deg}}, "D2");
 
+    setVIntake(-127);
+    pros::delay(1000);
+    setVIntake(0);
+    setIntake(127);
 
+  profileController->setTarget("A1");
+  profileController->waitUntilSettled();
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(-90_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  profileController->setTarget("B1");
+  profileController->waitUntilSettled();
+
+    setIntake(0);
+
+    setVIntake(-127);
+    pros::delay(300);
+    setVIntake(0);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(-45_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  profileController->setTarget("B1");
+  profileController->waitUntilSettled();
+
+    setVIntake(-127);
+    pros::delay(1500);
+    setVIntake(0);
+
+  profileController->setTarget("B1", true);
+  profileController->waitUntilSettled();
+
+    setIntake(127);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(135_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  profileController->setTarget("C1");
+  profileController->waitUntilSettled();
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(-90_deg);
+  chassisAuton->setMaxVelocity(150);
+
+    setIntake(0);
+
+  profileController->setTarget("D1");
+  profileController->waitUntilSettled();
+
+    setVIntake(-127);
+    pros::delay(1500);
+    setVIntake(0);
+
+  profileController->setTarget("D1", true);
+  profileController->waitUntilSettled();
+
+    setIntake(127);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(180_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  profileController->setTarget("A1");
+  profileController->waitUntilSettled();
+
+    setVIntake(-127);
+    pros::delay(300);
+    setVIntake(0);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(45_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  profileController->setTarget("C3");
+  profileController->waitUntilSettled();
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(45_deg);
+  chassisAuton->setMaxVelocity(150);
+
+    setIntake(0);
+  profileController->setTarget("C2");
+  profileController->waitUntilSettled();
+
+    setVIntake(-127);
+    pros::delay(1500);
+    setVIntake(0);
+
+  profileController->setTarget("D2");
+  profileController->waitUntilSettled();
+
+    setIntake(127);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(-90_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  profileController->setTarget("C4");
+  profileController->waitUntilSettled();
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnAngle(45_deg);
+  chassisAuton->setMaxVelocity(150);
+
+    setIntake(0);
+
+  profileController->setTarget("A1");
+  profileController->waitUntilSettled();
+
+    setVIntake(-127);
+    pros::delay(1500);
+    setVIntake(0);
+
+  profileController->setTarget("A1", true);
+  profileController->waitUntilSettled();
+//------------------------------------------------------------------------------------\\
+#pragma region oldAuton
+/*
   setVIntake(-127);
   pros::delay(1000);
   setVIntake(0);
-
   setIntake(127);
   chassisAuton->moveDistance(16_in);
   pros::delay(500);
@@ -132,7 +260,7 @@ void autonomous()
   chassisAuton->moveDistance(-17_in);
 
 
-  /*
+
   setIntake(127);
   chassisAuton->turnAngle(-84_deg);
   chassisAuton->moveDistance(10_in);
@@ -168,6 +296,7 @@ void autonomous()
   setIntake(127);
   setVIntake(127);
 */
+#pragma endregion oldAuton
 }
 
 void opcontrol()
