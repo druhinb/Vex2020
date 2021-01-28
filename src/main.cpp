@@ -40,7 +40,7 @@ void competition_initialize()
 
 void autonomous()
 {
-  std::shared_ptr<ChassisController> chassisAuton = ChassisControllerBuilder()
+  std::shared_ptr<OdomChassisController> chassisAuton = ChassisControllerBuilder()
       .withMotors(
         {1, 12}, //left motors are ports 1 and 2
         {-10, -19}
@@ -53,7 +53,8 @@ void autonomous()
       )
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
       .withDimensions(AbstractMotor::gearset::green, {{3.25_in, 9.5_in}, imev5GreenTPR})
-      .build(); // build an odometry chassis
+      .withOdometry()
+      .buildOdometry(); // build an odometry chassis
 
       std::shared_ptr<AsyncMotionProfileController> profileController =
         AsyncMotionProfileControllerBuilder()
@@ -65,136 +66,115 @@ void autonomous()
           .withOutput(chassisAuton)
           .buildMotionProfileController();
 
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-16_in, 0_in, 0_deg}}, "A1");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-12_in, 0_in, 0_deg}}, "B1");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-48_in, 0_in, 0_deg}}, "C1");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-31_in, 0_in, 0_deg}}, "C2");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-34_in, 0_in, 0_deg}}, "C3");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-42_in, 0_in, 0_deg}}, "C4");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-5_in, 0_in, 0_deg}}, "D1");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {-6.5_in, 0_in, 0_deg}}, "D2");
+
+  chassisAuton->setState({0_in, 0_in, 0_deg});
   chassisAuton->setMaxVelocity(150);
 
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-16_in, 0_in, 0_deg}}, "A1");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-12_in, 0_in, 0_deg}}, "B1");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-48_in, 0_in, 0_deg}}, "C1");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-31_in, 0_in, 0_deg}}, "C2");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-34_in, 0_in, 0_deg}}, "C3");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-42_in, 0_in, 0_deg}}, "C4");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-5_in, 0_in, 0_deg}}, "D1");
-  profileController->generatePath({{0_in, 0_in, 0_deg}, {-6.5_in, 0_in, 0_deg}}, "D2");
+//TODO: double all the values in movement...
 
     setVIntake(-127);
     pros::delay(1000);
     setVIntake(0);
     setIntake(127);
 
-  profileController->setTarget("A1");
-  profileController->waitUntilSettled();
+  chassisAuton->driveToPoint({16_in, 0_in});
+  chassisAuton->setState({1.5_ft, 1.5_ft, 0_deg});
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
+  chassisAuton->turnToAngle(-90_deg);
   chassisAuton->setMaxVelocity(150);
 
-  profileController->setTarget("B1");
-  profileController->waitUntilSettled();
+  chassisAuton->driveToPoint({1_ft, 1_ft});
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToAngle(-135_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  chassisAuton->driveToPoint({0.75_ft, 0.75_ft});
 
     setIntake(0);
 
     setVIntake(-127);
     pros::delay(300);
     setVIntake(0);
+    setIntake(127);
+
+  chassisAuton->driveToPoint({1_ft, 1_ft});
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-45_deg);
+  chassisAuton->turnToAngle(-135_deg);
   chassisAuton->setMaxVelocity(150);
 
-  profileController->setTarget("B1");
-  profileController->waitUntilSettled();
+  chassisAuton->driveToPoint({1_ft, 3_ft});
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToAngle(-90_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  chassisAuton->driveToPoint({0.75_ft, 3_ft});
 
     setVIntake(-127);
     pros::delay(1500);
     setVIntake(0);
-
-  profileController->setTarget("B1", true);
-  profileController->waitUntilSettled();
-
     setIntake(127);
 
+  chassisAuton->driveToPoint({1_ft, 3_ft});
+
+
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(135_deg);
+  chassisAuton->turnToAngle(90_deg);
   chassisAuton->setMaxVelocity(150);
 
-  profileController->setTarget("C1");
-  profileController->waitUntilSettled();
+  chassisAuton->driveToPoint({2_ft, 3_ft});
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
+  chassisAuton->turnToAngle(135_deg);
+  chassisAuton->setMaxVelocity(150);
+
+  chassisAuton->driveToPoint({3_ft, 2_ft});
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToAngle(180_deg);
   chassisAuton->setMaxVelocity(150);
 
     setIntake(0);
 
-  profileController->setTarget("D1");
-  profileController->waitUntilSettled();
-
+  chassisAuton->driveToPoint({3_ft, 0.75_ft});
     setVIntake(-127);
     pros::delay(1500);
     setVIntake(0);
 
-  profileController->setTarget("D1", true);
-  profileController->waitUntilSettled();
+  chassisAuton->driveToPoint({3_ft, 1_ft});
 
     setIntake(127);
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(180_deg);
+  chassisAuton->turnToAngle(90_deg);
   chassisAuton->setMaxVelocity(150);
 
-  profileController->setTarget("A1");
-  profileController->waitUntilSettled();
-
-    setVIntake(-127);
-    pros::delay(300);
-    setVIntake(0);
+chassisAuton->driveToPoint({5_ft, 1_ft});
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(45_deg);
-  chassisAuton->setMaxVelocity(150);
-
-  profileController->setTarget("C3");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(45_deg);
+  chassisAuton->turnToAngle(135_deg);
   chassisAuton->setMaxVelocity(150);
 
     setIntake(0);
-  profileController->setTarget("C2");
-  profileController->waitUntilSettled();
+
+  chassisAuton->driveToPoint({5.25_ft, 0.75_ft});
 
     setVIntake(-127);
     pros::delay(1500);
     setVIntake(0);
 
-  profileController->setTarget("D2");
-  profileController->waitUntilSettled();
-
-    setIntake(127);
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
-  chassisAuton->setMaxVelocity(150);
-
-  profileController->setTarget("C4");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(45_deg);
-  chassisAuton->setMaxVelocity(150);
-
-    setIntake(0);
-
-  profileController->setTarget("A1");
-  profileController->waitUntilSettled();
-
-    setVIntake(-127);
-    pros::delay(1500);
-    setVIntake(0);
-
-  profileController->setTarget("A1", true);
-  profileController->waitUntilSettled();
+  chassisAuton->driveToPoint({5_ft, 1_ft});
 //------------------------------------------------------------------------------------\\
 #pragma region oldAuton
 /*

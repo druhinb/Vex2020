@@ -67,11 +67,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/intake.cpp.o",
-            "src\\subsys_files\\intake.cpp"
+            "bin/subsys_files/vIntake.cpp.o",
+            "src\\subsys_files\\vIntake.cpp"
         ],
         "directory": "C:\\Users\\druhi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\intake.cpp"
+        "file": "src\\subsys_files\\vIntake.cpp"
     },
     {
         "arguments": [
@@ -89,7 +89,7 @@
             "-isystemc:\\users\\druhi\\appdata\\local\\programs\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
             "-isystemc:\\users\\druhi\\appdata\\local\\programs\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/subsys_files/",
+            "-iquote./include/./",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -104,11 +104,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/vIntake.cpp.o",
-            "src\\subsys_files\\vIntake.cpp"
+            "bin/main.cpp.o",
+            "src\\main.cpp"
         ],
         "directory": "C:\\Users\\druhi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\vIntake.cpp"
+        "file": "src\\main.cpp"
     },
     {
         "arguments": [
@@ -163,7 +163,7 @@
             "-isystemc:\\users\\druhi\\appdata\\local\\programs\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
             "-isystemc:\\users\\druhi\\appdata\\local\\programs\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/./",
+            "-iquote./include/subsys_files/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -178,10 +178,10 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/main.cpp.o",
-            "src\\main.cpp"
+            "bin/subsys_files/intake.cpp.o",
+            "src\\subsys_files\\intake.cpp"
         ],
         "directory": "C:\\Users\\druhi\\Downloads\\Vex2020",
-        "file": "src\\main.cpp"
+        "file": "src\\subsys_files\\intake.cpp"
     }
 ]
