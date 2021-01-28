@@ -86,19 +86,19 @@ void autonomous()
     setIntake(127);
 
   chassisAuton->driveToPoint({16_in, 0_in});
-  chassisAuton->setState({1.5_ft, 1.5_ft, 0_deg});
+  chassisAuton->setState({3_ft, 3_ft, 0_deg});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(-90_deg);
   chassisAuton->setMaxVelocity(150);
 
-  chassisAuton->driveToPoint({1_ft, 1_ft});
+  chassisAuton->driveToPoint({2_ft, 2_ft});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(-135_deg);
   chassisAuton->setMaxVelocity(150);
 
-  chassisAuton->driveToPoint({0.75_ft, 0.75_ft});
+  chassisAuton->driveToPoint({1.5_ft, 1.5_ft});
 
     setIntake(0);
 
@@ -107,39 +107,39 @@ void autonomous()
     setVIntake(0);
     setIntake(127);
 
-  chassisAuton->driveToPoint({1_ft, 1_ft});
+  chassisAuton->driveToPoint({2_ft, 2_ft});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(-135_deg);
   chassisAuton->setMaxVelocity(150);
 
-  chassisAuton->driveToPoint({1_ft, 3_ft});
+  chassisAuton->driveToPoint({2_ft, 6_ft});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(-90_deg);
   chassisAuton->setMaxVelocity(150);
 
-  chassisAuton->driveToPoint({0.75_ft, 3_ft});
+  chassisAuton->driveToPoint({1.5_ft, 6_ft});
 
     setVIntake(-127);
     pros::delay(1500);
     setVIntake(0);
     setIntake(127);
 
-  chassisAuton->driveToPoint({1_ft, 3_ft});
+  chassisAuton->driveToPoint({2_ft, 6_ft});
 
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(90_deg);
   chassisAuton->setMaxVelocity(150);
 
-  chassisAuton->driveToPoint({2_ft, 3_ft});
+  chassisAuton->driveToPoint({4_ft, 6_ft});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(135_deg);
   chassisAuton->setMaxVelocity(150);
 
-  chassisAuton->driveToPoint({3_ft, 2_ft});
+  chassisAuton->driveToPoint({6_ft, 4_ft});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(180_deg);
@@ -147,12 +147,12 @@ void autonomous()
 
     setIntake(0);
 
-  chassisAuton->driveToPoint({3_ft, 0.75_ft});
+  chassisAuton->driveToPoint({6_ft, 1.5_ft});
     setVIntake(-127);
     pros::delay(1500);
     setVIntake(0);
 
-  chassisAuton->driveToPoint({3_ft, 1_ft});
+  chassisAuton->driveToPoint({6_ft, 2_ft});
 
     setIntake(127);
 
@@ -160,7 +160,7 @@ void autonomous()
   chassisAuton->turnToAngle(90_deg);
   chassisAuton->setMaxVelocity(150);
 
-chassisAuton->driveToPoint({5_ft, 1_ft});
+chassisAuton->driveToPoint({10_ft, 2_ft});
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(135_deg);
@@ -168,13 +168,13 @@ chassisAuton->driveToPoint({5_ft, 1_ft});
 
     setIntake(0);
 
-  chassisAuton->driveToPoint({5.25_ft, 0.75_ft});
+  chassisAuton->driveToPoint({10.5_ft, 1.5_ft});
 
     setVIntake(-127);
     pros::delay(1500);
     setVIntake(0);
 
-  chassisAuton->driveToPoint({5_ft, 1_ft});
+  chassisAuton->driveToPoint({10_ft, 2_ft});
 //------------------------------------------------------------------------------------\\
 #pragma region oldAuton
 /*
