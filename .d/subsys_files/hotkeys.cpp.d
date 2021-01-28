@@ -1,5 +1,5 @@
-bin/subsys_files/drive.cpp.o: src/subsys_files/drive.cpp include/main.h \
- include/api.h include/pros/adi.h include/pros/colors.h \
+bin/subsys_files/hotkeys.cpp.o: src/subsys_files/hotkeys.cpp \
+ include/main.h include/api.h include/pros/adi.h include/pros/colors.h \
  include/pros/distance.h include/pros/ext_adi.h include/pros/adi.h \
  include/pros/adi.h include/pros/imu.h include/pros/llemu.h \
  include/display/lvgl.h include/display/lv_version.h \

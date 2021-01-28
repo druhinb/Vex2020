@@ -191,7 +191,7 @@ bin/subsys_files/intake.cpp.o: src/subsys_files/intake.cpp include/main.h \
  include/okapi/api/units/QTorque.hpp include/okapi/api/units/QVolume.hpp \
  include/okapi/impl/util/rate.hpp include/subsys_headers/intake.hpp \
  include/subsys_headers/drive.hpp include/subsys_headers/globals.hpp \
- include/subsys_headers/vIntake.hpp
+ include/subsys_headers/vIntake.hpp include/subsys_headers/hotkeys.hpp
 
 include/main.h:
 
@@ -736,3 +736,5 @@ include/subsys_headers/drive.hpp:
 include/subsys_headers/globals.hpp:
 
 include/subsys_headers/vIntake.hpp:
+
+include/subsys_headers/hotkeys.hpp:
