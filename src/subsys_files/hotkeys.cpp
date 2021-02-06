@@ -2,15 +2,7 @@
 
 void doubleIntakeHotkey()
 {
-  setIntake(127);
-  pros::delay(300);
-  setIntake(0);
-  setVIntake(127);
-  pros::delay(300);
-  setVIntake(0);
-  setIntake(127);
-  pros::delay(300);
-  setIntake(0);
+  vertical_intake_L = -127;
 }
 
 void activeHotkeys()
