@@ -46,17 +46,17 @@ void autonomous()
         {-10, -19}
       )  //right motors are ports 10 and 20
 
-      /*.withGains( //initializing integrated PID system 635
+      .withGains( //initializing integrated PID system 635
         {0.0020, 0.00001, 0}, // Distance controller gains
         {0.003, 0.00001, 0}, // Turn controller gains
         {0.002, 0.00001, 0.00006}  // Angle controller gains (helps drive straight)
-      )*/
+      )
 
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
       .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10.1_in}, imev5BlueTPR})
       .withSensors(
-          ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
-          ADIEncoder{'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+          ADIEncoder{'C', 'D'}, // left encoder in ADI ports A & B
+          ADIEncoder{'A', 'B', true}  // right encoder in ADI ports C & D (reversed)
       )
       .withOdometry({{3.25_in, 7_in}, quadEncoderTPR})
       .buildOdometry(); // build an odometry chassis
