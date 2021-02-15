@@ -19,7 +19,7 @@ void initialize()
 {
   //test comment
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "HIHIHI");
+	pros::lcd::set_text(1, "jnnjonojn");
   setAllBrake();
   pros::ADIGyro gyrolll(9);
   //pros::delay(2000);
