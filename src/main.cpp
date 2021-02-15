@@ -61,7 +61,7 @@ void autonomous()
           ADIEncoder{'D', 'C', true}, // left encoder in ADI ports A & B
           ADIEncoder{'A', 'B', true}  // right encoder in ADI ports C & D (reversed)
       )
-                    .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
+      .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
       .buildOdometry(); // build an odometry chassis
 
       std::shared_ptr<AsyncMotionProfileController> profileController =
@@ -96,8 +96,7 @@ pros::ADIEncoder rEncoder('A','B', true);
 lEncoder.reset();
 rEncoder.reset();
 
-chassisAuton->turnAngle(45_deg);
-/*
+
   chassisAuton->setState({6.5_in, 36_in, 0_deg});
 
     setIntake(127);
@@ -119,7 +118,7 @@ chassisAuton->turnAngle(45_deg);
   chassisAuton->turnAngle(-45_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->moveDistance(0.9_ft);
+  chassisAuton->moveDistance(1.1_ft);
 
     //First Tower
     setVIntake(-127);
@@ -127,11 +126,11 @@ chassisAuton->turnAngle(45_deg);
     setVIntake(0);
 
 
-  chassisAuton->moveDistance(-0.9_ft);
+  chassisAuton->moveDistance(-1.1_ft);
 
 //-------------------------------------\\
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(145_deg);
+  chassisAuton->turnAngle(140_deg);
   chassisAuton->setMaxVelocity(120);
   setIntake(127);
   chassisAuton->moveDistance(4_ft);
@@ -141,7 +140,7 @@ chassisAuton->turnAngle(45_deg);
   chassisAuton->turnAngle(-90_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->moveDistance(0.5_ft);
+  chassisAuton->moveDistance(0.8_ft);
 
     //Second Tower
     setVIntake(-127);
@@ -149,7 +148,7 @@ chassisAuton->turnAngle(45_deg);
     setVIntake(0);
 
 
-  chassisAuton->moveDistance(-1.5_ft);
+  chassisAuton->moveDistance(-1.8_ft);
   setIntake(127);
   //-------------------------------------\\
   chassisAuton->setMaxVelocity(75);
@@ -170,7 +169,7 @@ chassisAuton->turnAngle(45_deg);
   chassisAuton->turnAngle(45_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->moveDistance(0.5_ft);
+  chassisAuton->moveDistance(1.1_ft);
 
   //Third Tower
   setVIntake(-127);
@@ -196,14 +195,14 @@ chassisAuton->turnAngle(45_deg);
 
   setIntake(0);
 
-  chassisAuton->moveDistance(0.5_ft);
+  chassisAuton->moveDistance(0.7_ft);
 
   //Fourth Tower
   setVIntake(-127);
   pros::delay(700);
   setVIntake(0);
 
-  chassisAuton->moveDistance(-0.5_ft);
+  chassisAuton->moveDistance(-0.7_ft);
   setIntake(127);
 
   //-------------------------------------\\
@@ -219,14 +218,14 @@ chassisAuton->turnAngle(45_deg);
   chassisAuton->turnAngle(-45_deg);
   chassisAuton->setMaxVelocity(100);
 
-  chassisAuton->moveDistance(0.7_ft);
+  chassisAuton->moveDistance(1.1_ft);
 
   //Fifth Tower
   setVIntake(-127);
   pros::delay(700);
   setVIntake(0);
 
-  chassisAuton->moveDistance(-0.7_ft);
+  chassisAuton->moveDistance(-1.1_ft);
   setIntake(127);
 
   //-------------------------------------\\
@@ -243,14 +242,14 @@ chassisAuton->turnAngle(45_deg);
 
   setIntake(0);
 
-  chassisAuton->moveDistance(0.5_ft);
+  chassisAuton->moveDistance(0.7_ft);
 
   //Sixth Tower
   setVIntake(-127);
   pros::delay(700);
   setVIntake(0);
 
-  chassisAuton->moveDistance(-1.5_ft);
+  chassisAuton->moveDistance(-1.7_ft);
   setIntake(127);
 
   //-------------------------------------\\
@@ -273,14 +272,14 @@ chassisAuton->turnAngle(45_deg);
 
   setIntake(0);
 
-  chassisAuton->moveDistance(0.5_ft);
+  chassisAuton->moveDistance(1.1_ft);
 
   //Seventh Tower
   setVIntake(-127);
   pros::delay(700);
   setVIntake(0);
 
-  chassisAuton->moveDistance(-0.5_ft);
+  chassisAuton->moveDistance(-1.1_ft);
   setIntake(127);
   //-------------------------------------\\
   chassisAuton->moveDistance(-40_in);
@@ -299,17 +298,17 @@ chassisAuton->turnAngle(45_deg);
 
   setIntake(0);
 
-  chassisAuton->moveDistance(0.5_ft);
+  chassisAuton->moveDistance(0.7_ft);
 
   //Eighth Tower
   setVIntake(-127);
   pros::delay(700);
   setVIntake(0);
 
-  chassisAuton->moveDistance(-0.5_ft);
+  chassisAuton->moveDistance(-0.7_ft);
   setIntake(127);
   //-------------------------------------\\
-*/
+
 
 //   //chassisAuton->driveToPoint({10.6_ft, 10.6_ft});
 // //  chassisAuton->driveToPoint({10_ft, 10_ft});
