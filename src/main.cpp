@@ -23,6 +23,7 @@ void initialize()
   setAllBrake();
   pros::ADIGyro gyrolll(9);
   //pros::delay(2000);
+  pros::ADIEncoder lencoder()
 
 }
 
@@ -55,7 +56,7 @@ void autonomous()
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
       .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10.1_in}, imev5BlueTPR})
       .withSensors(
-          ADIEncoder{'C', 'D'}, // left encoder in ADI ports A & B
+          ADIEncoder{'D', 'C'}, // left encoder in ADI ports A & B
           ADIEncoder{'A', 'B'}  // right encoder in ADI ports C & D (reversed)
       )
       .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
