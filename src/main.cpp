@@ -61,7 +61,7 @@ void autonomous()
           ADIEncoder{'D', 'C', true}, // left encoder in ADI ports A & B
           ADIEncoder{'A', 'B', true}  // right encoder in ADI ports C & D (reversed)
       )
-      .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
+      .withOdometry({{2.75_in, 18_in}, quadEncoderTPR})
       .buildOdometry(); // build an odometry chassis
 
       std::shared_ptr<AsyncMotionProfileController> profileController =
