@@ -56,7 +56,7 @@ void autonomous()
       .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10_in}, imev5BlueTPR})
       .withSensors(
           ADIEncoder{'C', 'D'}, // left encoder in ADI ports A & B
-          ADIEncoder{'A', 'B', true}  // right encoder in ADI ports C & D (reversed)
+          ADIEncoder{'A', 'B'}  // right encoder in ADI ports C & D (reversed)
       )
       .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
       .buildOdometry(); // build an odometry chassis
