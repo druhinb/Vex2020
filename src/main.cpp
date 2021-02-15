@@ -361,14 +361,14 @@ chassisAuton->setState({6.5_in, 36_in, 0_deg});
 
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnToPoint({6_ft, 1.2_ft});
+  chassisAuton->turnToPoint({6_ft, 2_ft});
   chassisAuton->setMaxVelocity(120);
   setIntake(127);
-  chassisAuton->driveToPoint({6_ft, 1.8_ft});
+  chassisAuton->driveToPoint({6_ft, 2_ft});
 
-  setIntake(0);
+  setIntake(0); 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnToPoint({6_ft, 0_ft});
+  chassisAuton->turnToPoint({6_ft, 0.25_ft});
   chassisAuton->setMaxVelocity(120);
 
   chassisAuton->driveToPoint({6_ft, 1.70_ft});
@@ -427,7 +427,6 @@ chassisAuton->setState({6.5_in, 36_in, 0_deg});
   chassisAuton->driveToPoint({10.3_ft, 6.3_ft});
 
 
-  //chassisAuton->driveToPoint({10.2_ft, 6_ft});
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
