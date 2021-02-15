@@ -53,12 +53,12 @@ void autonomous()
       )
 
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10.1_in}, imev5BlueTPR})
+      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10_in}, imev5BlueTPR})
       .withSensors(
           ADIEncoder{'C', 'D'}, // left encoder in ADI ports A & B
           ADIEncoder{'A', 'B', true}  // right encoder in ADI ports C & D (reversed)
       )
-      .withOdometry({{3.25_in, 7_in}, quadEncoderTPR})
+      .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
       .buildOdometry(); // build an odometry chassis
 
       std::shared_ptr<AsyncMotionProfileController> profileController =
