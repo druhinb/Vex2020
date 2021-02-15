@@ -132,17 +132,17 @@ rEncoder.reset();
 lEncoder.reset();
 rEncoder.reset();
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(140_deg);
+  chassisAuton->turnAngle(145_deg);
   chassisAuton->setMaxVelocity(120);
   setIntake(127);
   chassisAuton->moveDistance(4_ft);
 
   setIntake(0);
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
+  chassisAuton->turnAngle(-95_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->moveDistance(0.6_ft);
+  chassisAuton->moveDistance(0.4_ft);
 
     //Second Tower
     setVIntake(-127);
@@ -150,7 +150,7 @@ rEncoder.reset();
     setVIntake(0);
 
 
-  chassisAuton->moveDistance(-1.6_ft);
+  chassisAuton->moveDistance(-1.4_ft);
   setIntake(127);
   //-------------------------------------\\
   lEncoder.reset();
@@ -188,12 +188,12 @@ rEncoder.reset();
   rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-45_deg);
+  chassisAuton->turnAngle(-41_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->moveDistance(1.2_ft);
+  chassisAuton->moveDistance(1.7_ft);
 
-  chassisAuton->moveDistance(-4.2_ft);
+  chassisAuton->moveDistance(-4.7_ft);
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);

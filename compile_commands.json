@@ -30,11 +30,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/intake.cpp.o",
-            "src\\subsys_files\\intake.cpp"
+            "bin/subsys_files/drive.cpp.o",
+            "src\\subsys_files\\drive.cpp"
         ],
         "directory": "C:\\Users\\anivi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\intake.cpp"
+        "file": "src\\subsys_files\\drive.cpp"
     },
     {
         "arguments": [
@@ -67,11 +67,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/drive.cpp.o",
-            "src\\subsys_files\\drive.cpp"
+            "bin/subsys_files/intake.cpp.o",
+            "src\\subsys_files\\intake.cpp"
         ],
         "directory": "C:\\Users\\anivi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\drive.cpp"
+        "file": "src\\subsys_files\\intake.cpp"
     },
     {
         "arguments": [
@@ -178,11 +178,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/hotkeys.cpp.o",
-            "src\\subsys_files\\hotkeys.cpp"
+            "bin/subsys_files/odomDebug.cpp.o",
+            "src\\subsys_files\\odomDebug.cpp"
         ],
         "directory": "C:\\Users\\anivi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\hotkeys.cpp"
+        "file": "src\\subsys_files\\odomDebug.cpp"
     },
     {
         "arguments": [
@@ -215,11 +215,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsys_files/odomDebug.cpp.o",
-            "src\\subsys_files\\odomDebug.cpp"
+            "bin/subsys_files/hotkeys.cpp.o",
+            "src\\subsys_files\\hotkeys.cpp"
         ],
         "directory": "C:\\Users\\anivi\\Downloads\\Vex2020",
-        "file": "src\\subsys_files\\odomDebug.cpp"
+        "file": "src\\subsys_files\\hotkeys.cpp"
     },
     {
         "arguments": [
