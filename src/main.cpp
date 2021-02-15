@@ -284,8 +284,6 @@ void autonomous()
 
   chassisAuton->moveDistance(0.5_ft);
 
-  chassisAuton->moveDistance(-0.5_ft);
-
   chassisAuton->moveDistance(-6.5_ft);
 
   chassisAuton->setMaxVelocity(75);
