@@ -61,7 +61,7 @@ void autonomous()
           ADIEncoder{'D', 'C'}, // left encoder in ADI ports A & B
           ADIEncoder{'A', 'B'}  // right encoder in ADI ports C & D (reversed)
       )
-      .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
+                                  .withOdometry({{2.75_in, 9_in}, quadEncoderTPR})
       .buildOdometry(); // build an odometry chassis
 
       std::shared_ptr<AsyncMotionProfileController> profileController =
@@ -105,14 +105,14 @@ chassisAuton->setState({6.5_in, 36_in, 0_deg});
   chassisAuton->turnToAngle(-90_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->driveToPoint({2_ft, 2_ft});
+  chassisAuton->driveToPoint({24_in, 24_in});
   setIntake(0);
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnToPoint({1.4_ft, 1.4_ft});
+  chassisAuton->turnToPoint({16.8_in, 16.8_in});
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->driveToPoint({1.4_ft, 1.4_ft});
+  chassisAuton->driveToPoint({16.8_in, 16.8_in});
 
 
     setVIntake(-127);
@@ -120,7 +120,7 @@ chassisAuton->setState({6.5_in, 36_in, 0_deg});
     setVIntake(0);
 
 
-  chassisAuton->driveToPoint({2_ft, 2_ft}, true);
+  chassisAuton->driveToPoint({24_in, 24_in}, true);
 
 
   chassisAuton->setMaxVelocity(75);
