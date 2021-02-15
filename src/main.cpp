@@ -23,7 +23,10 @@ void initialize()
   setAllBrake();
   pros::ADIGyro gyrolll(9);
   //pros::delay(2000);
-
+  pros::ADIEncoder lEncoder('D','C');
+  pros::ADIEncoder rEncoder('A','B');
+  lEncoder.reset();
+  rEncoder.reset();
 }
 
 //not important...
