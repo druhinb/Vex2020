@@ -129,6 +129,8 @@ rEncoder.reset();
   chassisAuton->moveDistance(-1.1_ft);
 
 //-------------------------------------\\
+lEncoder.reset();
+rEncoder.reset();
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(140_deg);
   chassisAuton->setMaxVelocity(120);
@@ -151,6 +153,8 @@ rEncoder.reset();
   chassisAuton->moveDistance(-1.8_ft);
   setIntake(127);
   //-------------------------------------\\
+  lEncoder.reset();
+  rEncoder.reset();
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);
   chassisAuton->setMaxVelocity(120);
@@ -180,6 +184,8 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
+  lEncoder.reset();
+  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(-45_deg);
@@ -206,6 +212,8 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
+  lEncoder.reset();
+  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);
@@ -229,6 +237,8 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
+  lEncoder.reset();
+  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(135_deg);
@@ -253,6 +263,8 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
+  lEncoder.reset();
+  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);
@@ -282,6 +294,9 @@ rEncoder.reset();
   chassisAuton->moveDistance(-1.1_ft);
   setIntake(127);
   //-------------------------------------\\
+  lEncoder.reset();
+  rEncoder.reset();
+
   chassisAuton->moveDistance(-40_in);
 
   chassisAuton->setMaxVelocity(75);
