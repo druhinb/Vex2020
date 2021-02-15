@@ -115,7 +115,7 @@ rEncoder.reset();
   chassisAuton->turnAngle(-45_deg);
   chassisAuton->setMaxVelocity(120);
 
-  chassisAuton->moveDistance(0.7_ft);
+  chassisAuton->moveDistance(0.8_ft);
 
     //First Tower
     setVIntake(-127);
@@ -123,11 +123,11 @@ rEncoder.reset();
     setVIntake(0);
 
 
-  chassisAuton->moveDistance(-0.7_ft);
+  chassisAuton->moveDistance(-0.8_ft);
 
 //-------------------------------------\\
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(135_deg);
+  chassisAuton->turnAngle(150_deg);
   chassisAuton->setMaxVelocity(120);
   setIntake(127);
   chassisAuton->moveDistance(4_ft);
