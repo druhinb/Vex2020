@@ -176,12 +176,10 @@ void autonomous()
   //-------------------------------------\\
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnToAngle(90_deg);
+  chassisAuton->turnToAngle(-90_deg);
   chassisAuton->setMaxVelocity(120);
 
   chassisAuton->moveDistance(0.5_ft);
-
-  chassisAuton->moveDistance(-0.5_ft);
 
   chassisAuton->moveDistance(-6.5_ft);
 
