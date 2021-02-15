@@ -201,14 +201,14 @@ rEncoder.reset();
 
   setIntake(0);
 
-  chassisAuton->moveDistance(0.7_ft);
+  chassisAuton->moveDistance(1.6_ft);
 
   //Fourth Tower
   setVIntake(-127);
   pros::delay(700);
   setVIntake(0);
 
-  chassisAuton->moveDistance(-0.7_ft);
+  chassisAuton->moveDistance(-0.6_ft);
   setIntake(127);
 
   //-------------------------------------\\
