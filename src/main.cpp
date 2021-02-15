@@ -90,7 +90,10 @@ void autonomous()
 // setVIntake(-127);
 // pros::delay(2000);
 // setVIntake(0);
-
+pros::ADIEncoder lEncoder('D','C');
+pros::ADIEncoder rEncoder('A','B');
+lEncoder.reset();
+rEncoder.reset();
   chassisAuton->setState({6.5_in, 36_in, 0_deg});
 
     setIntake(127);
