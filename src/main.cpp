@@ -90,10 +90,14 @@ void autonomous()
 // setVIntake(-127);
 // pros::delay(2000);
 // setVIntake(0);
+
 pros::ADIEncoder lEncoder('D','C', true);
 pros::ADIEncoder rEncoder('A','B', true);
 lEncoder.reset();
 rEncoder.reset();
+
+chassisAuton->turnAngle(45_deg);
+/*
   chassisAuton->setState({6.5_in, 36_in, 0_deg});
 
     setIntake(127);
@@ -305,7 +309,7 @@ rEncoder.reset();
   chassisAuton->moveDistance(-0.5_ft);
   setIntake(127);
   //-------------------------------------\\
-
+*/
 
 //   //chassisAuton->driveToPoint({10.6_ft, 10.6_ft});
 // //  chassisAuton->driveToPoint({10_ft, 10_ft});
