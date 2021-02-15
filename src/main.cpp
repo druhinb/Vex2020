@@ -91,15 +91,15 @@ void autonomous()
 // pros::delay(2000);
 // setVIntake(0);
 
-chassisAuton->setState({6.5_in, 36_in, 0_deg});
+  chassisAuton->setState({6.5_in, 36_in, 0_deg});
+
     setIntake(127);
     setVIntake(127);
     pros::delay(300);
     setVIntake(0);
+
   chassisAuton->setMaxVelocity(100);
   chassisAuton->driveToPoint({24_in, 36_in});
-
-
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnToAngle(-90_deg);
@@ -142,7 +142,7 @@ chassisAuton->setState({6.5_in, 36_in, 0_deg});
     setVIntake(0);
 
 
-  chassisAuton->moveDistance(-4.5_ft);
+  chassisAuton->moveDistance(-1.5_ft);
   setIntake(127);
   //-------------------------------------\\
   chassisAuton->setMaxVelocity(75);
