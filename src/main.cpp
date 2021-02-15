@@ -90,7 +90,7 @@ void autonomous()
 
 chassisAuton->setState({6.5_in, 36_in, 0_deg});
     setIntake(127);
-    setVIntake(-127);
+    setVIntake(127);
     pros::delay(300);
     setVIntake(0);
   chassisAuton->setMaxVelocity(100);
