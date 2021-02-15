@@ -101,7 +101,7 @@ chassisAuton->setState({6.5_in, 36_in, 0_deg});
 
 
   chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnToPoint({2_ft, 2_ft});
+  chassisAuton->turnToAngle(-90);
   chassisAuton->setMaxVelocity(120);
 
   chassisAuton->driveToPoint({2_ft, 2_ft});
