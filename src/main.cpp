@@ -19,14 +19,10 @@ void initialize()
 {
   //test comment
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "HIHIHI");
+	pros::lcd::set_text(1, "is it uploading?");
   setAllBrake();
   pros::ADIGyro gyrolll(9);
   //pros::delay(2000);
-  pros::ADIEncoder lEncoder('D','C');
-  pros::ADIEncoder rEncoder('A','B');
-  lEncoder.reset();
-  rEncoder.reset();
 }
 
 //not important...
@@ -48,28 +44,34 @@ void autonomous()
         {1, 12}, //left motors are ports 1 and 2
         {-10, -19}
       )  //right motors are ports 10 and 20
-/*
+
+      /*
       .withGains( //initializing integrated PID system 635
         {0.0020, 0.00001, 0}, // Distance controller gains
         {0.003, 0.00001, 0}, // Turn controller gains
         {0.002, 0.00001, 0.00006}  // Angle controller gains (helps drive straight)
       )
       */
+
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10.25_in}, imev5BlueTPR})
+      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10.1_in}, imev5BlueTPR})
+
       .withSensors(
-          ADIEncoder{'D', 'C', true}, // left encoder in ADI ports A & B
-          ADIEncoder{'A', 'B', true}  // right encoder in ADI ports C & D (reversed)
+          RotationSensor{1}, //left rotation sensor in port 1
+          RotationSensor{2} //right rotation sensor in port 2 ()
       )
-      .withOdometry({{3.25_in, 18_in}, quadEncoderTPR})
+      .withOdometry({{3.25_in, 18_in}, 36000})
       .buildOdometry(); // build an odometry chassis
 
       std::shared_ptr<AsyncMotionProfileController> profileController =
         AsyncMotionProfileControllerBuilder()
           .withLimits({
-            1.5, // Maximum linear velocity of the Chassis in m/s
-            1.0, // Maximum linear acceleration of the Chassis in m/s/s
-            5.0 // Maximum linear jerk of the Chassis in m/s/s/s
+
+            8.0, // Maximum linear velocity of the Chassis in m/s
+            5.0, // Maximum linear acceleration of the Chassis in m/s/s
+            50.0 // Maximum linear jerk of the Chassis in m/s/s/s
+
+
           })
           .withOutput(chassisAuton)
           .buildMotionProfileController();
@@ -82,10 +84,8 @@ void autonomous()
           profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-1.2_ft, 0_ft, 0_deg}}, "T1.2");
           profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-0.5_ft, 0_ft, 0_deg}}, "T0.5");
           profileController->generatePath({{0_in, 0_in, 0_deg}, {-30.25_in, 0_in, 0_deg}}, "S30.25");
-          profileController->generatePath({{0_in, 0_in, 0_deg}, {-17.5_in, 0_in, 0_deg}}, "S17.5");
+          profileController->generatePath({{0_in, 0_in, 0_deg}, {17.5_in, 0_in, 0_deg}}, "S17.5");
           profileController->generatePath({{0_in, 0_in, 0_deg}, {-5.5_in, 0_in, 0_deg}}, "S5.5");
-
-
 
 
 //
@@ -93,19 +93,16 @@ void autonomous()
 // ALERT: X AND Y ARE SWITCHED SO MAKE SURE YOUR COORDINATES
 // REFLECT THAT
 
-setVIntake(-127);
-pros::delay(2000);
-setVIntake(0);
 
+/*
 pros::ADIEncoder lEncoder('D','C', true);
 pros::ADIEncoder rEncoder('A','B', true);
 lEncoder.reset();
 rEncoder.reset();
+*/
 
-
-  chassisAuton->setState({6.5_in, 36_in, 0_deg});
-
-    setIntake(127);
+/*
+  setIntake(127);
 
 
   chassisAuton->setMaxVelocity(100);
@@ -143,8 +140,6 @@ rEncoder.reset();
   profileController->waitUntilSettled();
 
 //-------------------------------------\\
-lEncoder.reset();
-rEncoder.reset();
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(130_deg);
   chassisAuton->setMaxVelocity(120);
@@ -170,8 +165,6 @@ rEncoder.reset();
     profileController->waitUntilSettled();
   setIntake(127);
   //-------------------------------------\\
-  lEncoder.reset();
-  rEncoder.reset();
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);
   chassisAuton->setMaxVelocity(120);
@@ -205,18 +198,13 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
-  lEncoder.reset();
-  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(-41_deg);
   chassisAuton->setMaxVelocity(120);
 
-  profileController->setTarget("T1.5");
+  profileController->setTarget("T1.2");
   profileController->waitUntilSettled();
-
-  lEncoder.reset();
-  rEncoder.reset();
 
   profileController->setTarget("S5.5", true);
   profileController->waitUntilSettled();
@@ -228,7 +216,7 @@ rEncoder.reset();
   setIntake(0);
 
   profileController->setTarget("T1.5");
-  profileController->waitUntilSettled(s);
+  profileController->waitUntilSettled();
 
   //Fourth Tower
   setVIntake(-127);
@@ -240,8 +228,6 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
-  lEncoder.reset();
-  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);
@@ -268,8 +254,6 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
-  lEncoder.reset();
-  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(135_deg);
@@ -297,8 +281,6 @@ rEncoder.reset();
   setIntake(127);
 
   //-------------------------------------\\
-  lEncoder.reset();
-  rEncoder.reset();
 
   chassisAuton->setMaxVelocity(75);
   chassisAuton->turnAngle(90_deg);
@@ -332,8 +314,6 @@ rEncoder.reset();
   profileController->waitUntilSettled();
   setIntake(127);
   //-------------------------------------\\
-  lEncoder.reset();
-  rEncoder.reset();
 
   profileController->setTarget("S30.25", true);
   profileController->waitUntilSettled();
@@ -366,95 +346,106 @@ rEncoder.reset();
   profileController->waitUntilSettled();
   setIntake(127);
   //-------------------------------------\\
+*/
 
-//
-// chassisAuton->setState({7_in, 36_in, 0_deg});
-//     setIntake(127);
-//     setVIntake(127);
-//     pros::delay(300);
-//     setVIntake(0);
-//   chassisAuton->setMaxVelocity(100);
-//   chassisAuton->driveToPoint({24_in, 36_in});
-//
-//   chassisAuton->driveToPoint({2_ft, 2_ft});
-//   setIntake(0);
-//
-//   chassisAuton->setMaxVelocity(75);
-//   chassisAuton->turnToPoint({0_ft, 0_ft});
-//   chassisAuton->setMaxVelocity(120);
-//
-//   chassisAuton->driveToPoint({1.4_ft, 1.4_ft});
-//
-//
-//     setVIntake(-127);
-//     pros::delay(1500);
-//     setVIntake(0);
-//
-//
-//   chassisAuton->driveToPoint({2_ft, 2_ft}, true);
-//
-//   setIntake(127);
-//   chassisAuton->driveToPoint({6_ft, 2_ft});
-//
-//   setIntake(0);
-//
-//   chassisAuton->driveToPoint({6_ft, 1.70_ft});
-//
-//     setVIntake(-127);
-//     pros::delay(1500);
-//     setVIntake(0);
-//
-//
-//   chassisAuton->driveToPoint({6_ft, 3_ft}, true);
-//       setIntake(127);
-//
-//   chassisAuton->driveToPoint({10_ft, 3_ft});
-//
-//   chassisAuton->driveToPoint({10_ft, 2_ft});
-//
-//   setIntake(0);
-//
-//   chassisAuton->driveToPoint({10.6_ft, 1.4_ft});
-//
-//   setVIntake(-127);
-//   pros::delay(1500);
+chassisAuton->setState({7_in, 36_in, 0_deg});
+    setIntake(127);
+
+  chassisAuton->setMaxVelocity(100);
+  chassisAuton->driveToPoint({24_in, 36_in});
+  setVIntake(127);
+  pros::delay(300);
+  setVIntake(0);
+
+  chassisAuton->turnToPoint({2_ft,2_ft});
+  chassisAuton->driveToPoint({2_ft, 2_ft});
+  setIntake(0);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToPoint({0_ft, 0_ft});
+  chassisAuton->setMaxVelocity(120);
+
+  chassisAuton->driveToPoint({1.1_ft, 1.1_ft});
+
+
+    setVIntake(-127);
+    pros::delay(1500);
+    setVIntake(0);
+
+
+  chassisAuton->driveToPoint({2.1_ft, 2.1_ft}, true);
+
+  setIntake(127);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToPoint({12_ft, 2.2_ft});
+  chassisAuton->setMaxVelocity(120);
+
+  chassisAuton->driveToPoint({5.9_ft, 2.2_ft});
+
+  setIntake(0);
+  chassisAuton->driveToPoint({5.9_ft, 1.95_ft});
+
+    setVIntake(-127);
+    pros::delay(1500);
+    setVIntake(0);
+
+
+  chassisAuton->driveToPoint({6_ft, 3_ft}, true);
+      setIntake(127);
+
+  chassisAuton->driveToPoint({10_ft, 3_ft});
+
+  chassisAuton->driveToPoint({10_ft, 2_ft});
+
+  setIntake(0);
+
+  chassisAuton->driveToPoint({10.6_ft, 1.4_ft});
+
+  setVIntake(-127);
+  pros::delay(1500);
+  setVIntake(0);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToPoint({12_ft, 0_ft});
+  chassisAuton->setMaxVelocity(120);
+
+  chassisAuton->driveToPoint({9_ft, 3_ft}, true);
+  setIntake(127);
+
+
+  chassisAuton->driveToPoint({9_ft, 1.45_ft});
+
+  chassisAuton->driveToPoint({9_ft, 6.5_ft}, true);
+
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToPoint({12_ft, 6.5_ft});
+  chassisAuton->setMaxVelocity(120);
+
+
+  setIntake(0);
+
+  chassisAuton->driveToPoint({10.5_ft, 6.5_ft});
+
+
+  setVIntake(-127);
+  pros::delay(1500);
+  setVIntake(0);
+  chassisAuton->driveToPoint({10_ft, 6.5_ft}, true);
+  setIntake(127);
+
+  chassisAuton->driveToPoint({10_ft, 10.5_ft});
+
+  setIntake(0);
+  chassisAuton->setMaxVelocity(75);
+  chassisAuton->turnToPoint({12_ft, 12.5_ft});
+  chassisAuton->setMaxVelocity(100);
+
+  chassisAuton->driveToPoint({10.6_ft, 11.5_ft});
+  setVIntake(-127);
+  pros::delay(1500);
+  chassisAuton->driveToPoint({8_ft, 8_ft});
 //   setVIntake(0);
-//
-//   chassisAuton->driveToPoint({9_ft, 3_ft}, true);
-//   setIntake(127);
-//
-//
-//   chassisAuton->driveToPoint({9_ft, 1.45_ft});
-//
-//   chassisAuton->driveToPoint({9_ft, 6_ft}, true);
-//
-//   chassisAuton->setMaxVelocity(75);
-//   chassisAuton->turnToPoint({12_ft, 6_ft});
-//   chassisAuton->setMaxVelocity(120);
-//
-//
-//   setIntake(0);
-//
-//   chassisAuton->driveToPoint({10.4_ft, 6.4_ft});
-//
-//
-//   setVIntake(-127);
-//   pros::delay(1500);
-//   setVIntake(0);
-//   chassisAuton->driveToPoint({10_ft, 6_ft}, true);
-//   setIntake(127);
-//
-//   chassisAuton->driveToPoint({10_ft, 10_ft});
-//
-//   setIntake(0);
-//   chassisAuton->setMaxVelocity(75);
-//   chassisAuton->turnToPoint({12_ft, 12.5_ft});
-//   chassisAuton->setMaxVelocity(100);
-//
-//   chassisAuton->driveToPoint({10.6_ft, 11_ft});
-//   setVIntake(-127);
-//   pros::delay(1500);
-// //   setVIntake(0);
 
 }
 
