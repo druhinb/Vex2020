@@ -8,7 +8,7 @@ pros::Motor RF_drive (19, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER
 pros::Motor vertical_intake_L(7, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 pros::Motor vertical_intake_U(6, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 pros::Motor r_horizontal_intake (8, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor l_horizontal_intake (3, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor l_horizontal_intake (2, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 //CONTROLLER
 pros::Controller controller((pros::E_CONTROLLER_MASTER));
