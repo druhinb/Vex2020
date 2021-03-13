@@ -386,6 +386,8 @@ chassisAuton->setState({24_in, 24_in, -90_deg});
   setIntake(0);
 
 chassisAuton->driveToPoint({13.2_in, 13.2_in});
+l.reset();
+r.reset();
 chassisAuton->setState({13.2_in, 13.2_in, -135_deg});
 
   setVIntake(-127);
@@ -403,7 +405,9 @@ chassisAuton->driveToPoint({67_in, 33_in});
   setIntake(0);
 
 chassisAuton->setState({72_in, 24_in, 0_deg});
-chassisAuton->driveToPoint({72_in, 16_in});
+chassisAuton->driveToPoint({72_in, 19_in});
+l.reset();
+r.reset();
 
   setVIntake(-127);
   pros::delay(1500);
@@ -413,7 +417,7 @@ chassisAuton->setState({72_in, 19_in, -90_deg});
 
 chassisAuton->driveToPoint({72_in, 36_in}, true);
 
-chassisAuton->setState({72_in, 36_in, -90_deg});
+chassisAuton->setState({72_in, 36_in, -92_deg});
 
   setIntake(127);
 
@@ -427,6 +431,8 @@ chassisAuton->setState({120_in, 22_in, -90_deg});
   setIntake(0);
 
 chassisAuton->driveToPoint({130_in, 14_in});
+l.reset();
+r.reset();
 
   setVIntake(-127);
   pros::delay(1500);
@@ -453,6 +459,8 @@ chassisAuton->setState({108_in, 72_in, -90_deg});
 
 chassisAuton->driveToPoint({130_in, 72_in});
 chassisAuton->setState({130_in, 72_in, 0_deg});
+l.reset();
+r.reset();
 
 
   setVIntake(-127);
@@ -471,6 +479,8 @@ chassisAuton->setState({120_in, 126_in, 90_deg});
 
 chassisAuton->driveToPoint({132_in, 132_in});
 chassisAuton->setState({132_in, 132_in, 45_deg});
+l.reset();
+r.reset();
 
   setVIntake(-127);
   pros::delay(1500);
