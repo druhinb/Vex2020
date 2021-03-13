@@ -64,7 +64,7 @@ void autonomous()
       		{0.002, 0, 0.00006}  // Angle controller gains (helps drive straight)
       )*/
       // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 9.5_in}, imev5BlueTPR})
+      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 10.1_in}, imev5BlueTPR})
 
       .withSensors(
           l, //left rotation sensor in port 1
@@ -394,8 +394,6 @@ chassisAuton->setState({13.2_in, 13.2_in, -135_deg});
 
 
 chassisAuton->driveToPoint({25_in, 25_in}, true);
-  l.reset();
-  r.reset();
 chassisAuton->setState({24_in, 24_in, -145_deg});
 
   setIntake(127);
@@ -404,8 +402,6 @@ chassisAuton->driveToPoint({67_in, 33_in});
 
   setIntake(0);
 
-  l.reset();
-  r.reset();
 chassisAuton->setState({72_in, 24_in, 0_deg});
 chassisAuton->driveToPoint({72_in, 19_in});
 
@@ -413,13 +409,9 @@ chassisAuton->driveToPoint({72_in, 19_in});
   pros::delay(1500);
   setVIntake(0);
 
-  l.reset();
-  r.reset();
 chassisAuton->setState({72_in, 19_in, -90_deg});
 
 chassisAuton->driveToPoint({72_in, 36_in}, true);
-  l.reset();
-  r.reset();
 
 chassisAuton->setState({72_in, 36_in, -92_deg});
 
@@ -429,8 +421,7 @@ chassisAuton->driveToPoint({120_in, 36_in});
 chassisAuton->setState({120_in, 36_in, 0_deg});
 
 chassisAuton->driveToPoint({120_in, 22_in});
-  l.reset();
-  r.reset();
+
 chassisAuton->setState({120_in, 22_in, -90_deg});
 
   setIntake(0);
@@ -441,25 +432,21 @@ chassisAuton->driveToPoint({130_in, 14_in});
   pros::delay(1500);
   setVIntake(0);
 
-  l.reset();
-  r.reset();
+
 chassisAuton->setState({130_in, 14_in, -45_deg});
 
 chassisAuton->driveToPoint({108_in, 36_in}, true);
-  l.reset();
-  r.reset();
+
 chassisAuton->setState({108_in, 36_in, -50_deg});
 
   setIntake(127);
 
 chassisAuton->driveToPoint({108_in, 12_in});
-  l.reset();
-  r.reset();
+
 chassisAuton->setState({108_in, 12_in, -90_deg});
 
 chassisAuton->driveToPoint({108_in, 72_in}, true);
-  l.reset();
-  r.reset();
+
 chassisAuton->setState({108_in, 72_in, -90_deg});
 
   setIntake(0);
