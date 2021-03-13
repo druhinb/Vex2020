@@ -403,7 +403,7 @@ chassisAuton->driveToPoint({67_in, 33_in});
   setIntake(0);
 
 chassisAuton->setState({72_in, 24_in, 0_deg});
-chassisAuton->driveToPoint({72_in, 19_in});
+chassisAuton->driveToPoint({72_in, 16_in});
 
   setVIntake(-127);
   pros::delay(1500);
@@ -413,7 +413,7 @@ chassisAuton->setState({72_in, 19_in, -90_deg});
 
 chassisAuton->driveToPoint({72_in, 36_in}, true);
 
-chassisAuton->setState({72_in, 36_in, -92_deg});
+chassisAuton->setState({72_in, 36_in, -90_deg});
 
   setIntake(127);
 
