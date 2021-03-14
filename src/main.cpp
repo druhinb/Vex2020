@@ -20,7 +20,7 @@ void initialize()
   Logger::setDefaultLogger(
     std::make_shared<Logger>(
         TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
-        "/ser/sout", // Output to the PROS terminal
+        "include/logger.txt", // Output to the PROS terminal
         Logger::LogLevel::warn // Show errors and warnings
     )
 );
@@ -46,436 +46,176 @@ void competition_initialize()
 
 void autonomous()
 {
+  pros::Rotation l(3);
+  pros::Rotation r(5);
+  l.reset_position(); r.reset_position();
 
   std::shared_ptr<OdomChassisController> chassisAuton = ChassisControllerBuilder()
       .withMotors(
         {1, 12}, //left motors are ports 1 and 2
         {-10, -19}
-      )  //right motors are ports 10 and 20
-      .withSensors(
+      )  //right motors are ports 10 and 19
+      .withSensors( //declares rotation sensors; left at port 3 and right on port 5 (reversed)
         RotationSensor{3},
         RotationSensor{5, true}
       )
-    /*  .withGains(
-      		{0.0035, 0, 0}, // Distance controller gains
-      		{0.006, 0, 0}, // Turn controller gains
-      		{0.002, 0, 0.00006}  // Angle controller gains (helps drive straight)
-      )*/
-      // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 9.5_in}, imev5BlueTPR})
-
-      .withOdometry({{3.25_in, 15_in}, 4090})
+      //blue gearset, 3.25 inch wheel diameter, 9.5 inch wheelbase (Left-Back to Right-Back Wheel)
+      .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 9.75_in}, imev5BlueTPR})
+      //3.25in tracking wheel, 15_in distance between encoder wheels, 4090 Ticks Per Rotation
+      .withOdometry({{3.25_in, 15.5_in}, quadEncoderTPR})
+      //Ignore, this is an experiment
       .withLogger(
         std::make_shared<Logger>(
             TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
-            "./include/Logger.txt", // Output to the PROS terminal
+            "include/logger.txt", // Output to the PROS terminal
             Logger::LogLevel::debug // Show errors and warnings
         )
       )
+      //Builds the chassis
       .buildOdometry(); // build an odometry chassis
-
-      std::shared_ptr<AsyncMotionProfileController> profileController =
-        AsyncMotionProfileControllerBuilder()
-          .withLimits({
-
-            8.0, // Maximum linear velocity of the Chassis in m/s
-            5.0, // Maximum linear acceleration of the Chassis in m/s/s
-            50.0 // Maximum linear jerk of the Chassis in m/s/s/s
-
-
-          })
-          .withOutput(chassisAuton)
-          .buildMotionProfileController();
-
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-5_ft, 0_ft, 0_deg}}, "A5");
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-4_ft, 0_ft, 0_deg}}, "A4");
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-2_ft, 0_ft, 0_deg}}, "A2");
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-1_ft, 0_ft, 0_deg}}, "A1");
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-1.5_ft, 0_ft, 0_deg}}, "T1.5");
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-1.2_ft, 0_ft, 0_deg}}, "T1.2");
-          profileController->generatePath({{0_ft, 0_ft, 0_deg}, {-0.5_ft, 0_ft, 0_deg}}, "T0.5");
-          profileController->generatePath({{0_in, 0_in, 0_deg}, {-30.25_in, 0_in, 0_deg}}, "S30.25");
-          profileController->generatePath({{0_in, 0_in, 0_deg}, {17.5_in, 0_in, 0_deg}}, "S17.5");
-          profileController->generatePath({{0_in, 0_in, 0_deg}, {-5.5_in, 0_in, 0_deg}}, "S5.5");
 
 //
 // TODO: double all the values in movement...|
 // ALERT: X AND Y ARE SWITCHED SO MAKE SURE YOUR COORDINATES
 // REFLECT THAT
-
-
-
-
 /*
-pros::ADIEncoder lEncoder('D','C', true);
-pros::ADIEncoder rEncoder('A','B', true);
-lEncoder.reset();
-rEncoder.reset();
+  Functions Available
+  ===================
+  chassisAuton->moveToPoint({y_units, x_units});
+  chassisAuton->turnToPoint({y_units, x_units});
+  chassisAuton->setState({y_units, x_units, angle_units})
+  chassisAuton->setMaxVelocity({0-200});
+  pros::delay(delay_milliseconds);
+  setIntake(0-127);
+  setVIntake(0-127);
+  ==================
 */
 
-/*
-  setIntake(127);
-
-
-  chassisAuton->setMaxVelocity(100);
-  profileController->setTarget("S17.5");
-  profileController->waitUntilSettled();
-
-  setVIntake(127);
-  pros::delay(300);
-  setVIntake(0);
-
-  pros::delay (1000);
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A1");
-  profileController->waitUntilSettled();
-  setIntake(0);
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-45_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("T1.2");
-  profileController->waitUntilSettled();
-
-    //First Tower
-    setVIntake(-127);
-    pros::delay(700);
-    setVIntake(0);
-
-
-  profileController->setTarget("T1.2", true);
-  profileController->waitUntilSettled();
-
-//-------------------------------------\\
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(130_deg);
-  chassisAuton->setMaxVelocity(120);
-  setIntake(127);
-  profileController->setTarget("A4");
-  profileController->waitUntilSettled();
-
-  setIntake(0);
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("T0.5");
-  profileController->waitUntilSettled();
-
-    //Second Tower
-    setVIntake(-127);
-    pros::delay(700);
-    setVIntake(0);
-
-
-    profileController->setTarget("T1.5", true);
-    profileController->waitUntilSettled();
-  setIntake(127);
-  //-------------------------------------\\
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A4");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A1");
-  profileController->waitUntilSettled();
-
-  setIntake(0);
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(45_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("T1.2");
-  profileController->waitUntilSettled();
-
-  //Third Tower
-  setVIntake(-127);
-  pros::delay(700);
-  setVIntake(0);
-
-  profileController->setTarget("S30.25", true);
-  profileController->waitUntilSettled();
-  setIntake(127);
-
-  //-------------------------------------\\
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-41_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("T1.2");
-  profileController->waitUntilSettled();
-
-  profileController->setTarget("S5.5", true);
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  setIntake(0);
-
-  profileController->setTarget("T1.5");
-  profileController->waitUntilSettled();
-
-  //Fourth Tower
-  setVIntake(-127);
-  pros::delay(700);
-  setVIntake(0);
-
-  profileController->setTarget("T0.5", true);
-  profileController->waitUntilSettled();
-  setIntake(127);
-
-  //-------------------------------------\\
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A4");
-  profileController->waitUntilSettled();
-
-  setIntake(0);
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-45_deg);
-  chassisAuton->setMaxVelocity(100);
-
-  profileController->setTarget("T1.2");
-  profileController->waitUntilSettled();
-
-  //Fifth Tower
-  setVIntake(-127);
-  pros::delay(700);
-  setVIntake(0);
-
-  profileController->setTarget("T1.2", true);
-  profileController->waitUntilSettled();
-  setIntake(127);
-
-  //-------------------------------------\\
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(135_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A4");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  setIntake(0);
-
-  profileController->setTarget("T0.5");
-  profileController->waitUntilSettled();
-
-  //Sixth Tower
-  setVIntake(-127);
-  pros::delay(700);
-  setVIntake(0);
-
-  profileController->setTarget("T1.5", true);
-  profileController->waitUntilSettled();
-  setIntake(127);
-
-  //-------------------------------------\\
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A4");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(-90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("A1");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(45_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  setIntake(0);
-
-  profileController->setTarget("T1.2");
-  profileController->waitUntilSettled();
-
-  //Seventh Tower
-  setVIntake(-127);
-  pros::delay(700);
-  setVIntake(0);
-
-  profileController->setTarget("T1.2", true);
-  profileController->waitUntilSettled();
-  setIntake(127);
-  //-------------------------------------\\
-
-  profileController->setTarget("S30.25", true);
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(45_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  profileController->setTarget("T1.5");
-  profileController->waitUntilSettled();
-
-  profileController->setTarget("S5.5");
-  profileController->waitUntilSettled();
-
-  chassisAuton->setMaxVelocity(75);
-  chassisAuton->turnAngle(90_deg);
-  chassisAuton->setMaxVelocity(120);
-
-  setIntake(0);
-
-  profileController->setTarget("T0.5");
-  profileController->waitUntilSettled();
-
-  //Eighth Tower
-  setVIntake(-127);
-  pros::delay(700);
-  setVIntake(0);
-
-  profileController->setTarget("T0.5");
-  profileController->waitUntilSettled();
-  setIntake(127);
-  //-------------------------------------\\
-*/
-
-
+//Sets the starting state (center of the drivetrain)
 chassisAuton->setState({6.5_in, 36_in, 0_deg});
-setIntake(127);
-pros::delay(900);
-chassisAuton->setMaxVelocity(100);
-chassisAuton->driveToPoint({24_in, 36_in});
-chassisAuton->setState({24_in, 36_in, 0_deg});
 
+//Starts up the intake
+setIntake(127);
+
+//Delay to give the chassis time to configure
+pros::delay(900);
+
+//Sets the max velocity
+chassisAuton->setMaxVelocity(100);
+
+//---------------------------------------------------\\
+//First tower code
+//---------------------------------------------------\\
+
+chassisAuton->driveToPoint({24_in, 36_in});
+std::cout<<r.get_position();
+std::cout<<l.get_position();
+
+
+  //Brings up the ball so it doesn't get stuck
   setVIntake(127);
   pros::delay(300);
   setVIntake(0);
 
-chassisAuton->driveToPoint({48_in, 96_in});
-/*
+
 chassisAuton->driveToPoint({24_in, 24_in});
-chassisAuton->setState({24_in, 24_in, -90_deg});
+
 
   setIntake(0);
 
-chassisAuton->driveToPoint({13.2_in, 13.2_in});
-l.reset();
-r.reset();
-chassisAuton->setState({13.2_in, 13.2_in, -135_deg});
+chassisAuton->driveToPoint({15_in, 15_in});
+chassisAuton->setState({15_in, 15_in, -135_deg});
 
+  //First tower
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
 
+//---------------------------------------------------Second tower code
 
 chassisAuton->driveToPoint({24_in, 24_in}, true);
 chassisAuton->setState({24_in, 24_in, -135_deg});
 
   setIntake(127);
 
-chassisAuton->driveToPoint({67_in, 32_in});
-
+chassisAuton->driveToPoint({72_in, 24_in});
 chassisAuton->setState({72_in, 24_in, 0_deg});
-pros::delay(100);
-setIntake(0);
-chassisAuton->driveToPoint({71_in, 15_in});
-l.reset();
-r.reset();
 
+  pros::delay(100);
+  setIntake(0);
+
+chassisAuton->driveToPoint({72_in, 16_in});
+
+  //Second tower
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
 
-chassisAuton->setState({72_in, 18_in, -90_deg});
+chassisAuton->setState({72_in, 16_in, -90_deg});
 
+//---------------------------------------------------\\
+//Third tower code
+//---------------------------------------------------\\
 chassisAuton->driveToPoint({72_in, 36_in}, true);
+chassisAuton->setState({72_in, 36_in, -90_deg});
 
+  setIntake(127);
 
-
-chassisAuton->setState({72_in, 36_in, -85_deg});
-
-setIntake(127);
-  chassisAuton->setMaxVelocity(70);
-  chassisAuton->driveToPoint({120_in, 37_in});
-  chassisAuton->setMaxVelocity(100);
-
+chassisAuton->setMaxVelocity(50);
+chassisAuton->driveToPoint({120_in, 36_in});
+chassisAuton->setMaxVelocity(100);
 chassisAuton->setState({120_in, 36_in, 0_deg});
 
-chassisAuton->driveToPoint({120_in, 25_in});
+chassisAuton->driveToPoint({120_in, 24_in});
+chassisAuton->setState({120_in, 24_in, -90_deg});
 
-chassisAuton->setState({120_in, 23.5_in, -90_deg});
   pros::delay(200);
   setIntake(0);
 
 chassisAuton->driveToPoint({130_in, 14_in});
-l.reset();
-r.reset();
 
+  //Third tower
   setVIntake(-127);
   pros::delay(1500);
   setVIntake(0);
 
-
+//---------------------------------------------------\\
+//Fourth tower code
+//---------------------------------------------------\\
 chassisAuton->setState({130_in, 14_in, -45_deg});
-
 chassisAuton->driveToPoint({108_in, 36_in}, true);
+
 setIntake(127);
 
 chassisAuton->setState({108_in, 36_in, -50_deg});
 
-chassisAuton->driveToPoint({108_in, 14_in});
-chassisAuton->setState({108_in, 14_in, -90_deg});
+chassisAuton->driveToPoint({108_in, 16_in});
+chassisAuton->setState({108_in, 16_in, -90_deg});
 
+//Bang into the wall to correct
 chassisAuton->moveDistanceAsync(24_in);
 pros::delay(1000);
 chassisAuton->stop();
-l.reset();
-r.reset();
 
 chassisAuton->setState({108_in, 11.5_in, -90_deg});
 
 chassisAuton->driveToPoint({108_in, 72_in}, true);
-l.reset();
-r.reset();
-chassisAuton->setState({108_in, 72_in, -78_deg});
+chassisAuton->setState({108_in, 72_in, -90_deg});
 
 setIntake(0);
 
 chassisAuton->driveToPoint({130_in, 72_in});
 chassisAuton->setState({130_in, 72_in, 0_deg});
 
-chassisAuton->moveDistanceAsync(24_in);
-pros::delay(1500);
-chassisAuton->stop();
-l.reset();
-r.reset();
+  //Fourth tower
+  setVIntake(-127);
+  pros::delay(1000);
+  setVIntake(0);
 
-setVIntake(-127);
-pros::delay(1000);
-setVIntake(0);
-
-chassisAuton->driveToPoint({124_in, 72_in}, true);
+//---------------------------------------------------\\
+//Fifth tower code
+//---------------------------------------------------\\
+chassisAuton->driveToPoint({120_in, 72_in}, true);
 chassisAuton->setState({120_in, 72_in, 0_deg});
 
 setIntake(127);
@@ -488,11 +228,15 @@ setIntake(0);
 chassisAuton->driveToPoint({132_in, 132_in});
 chassisAuton->setState({132_in, 132_in, 45_deg});
 
-setVIntake(-127);
-pros::delay(1500);
+  //Fifth tower
+  setVIntake(-127);
+  pros::delay(1500);
 
+//Move away from the fifth tower
 chassisAuton->driveToPoint({8_ft, 8_ft});
-*/
+
+
+
 setVIntake(0);
 
 }
