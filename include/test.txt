@@ -1,0 +1,127 @@
+//Sets the starting state (center of the drivetrain)
+ chassisAuton->setState({6.5_in, 36_in, 0_deg});
+
+ //Starts up the intake
+ setIntake(127);
+
+ //Delay to give the chassis time to configure
+ pros::delay(900);
+
+ //Sets the max velocity
+ chassisAuton->setMaxVelocity(100);
+
+ //---------------------------------------------------\\
+ //First tower code
+ //---------------------------------------------------\\
+ chassisAuton->driveToPoint({24_in, 36_in});
+
+   //Brings up the ball so it doesn't get stuck
+   setVIntake(127);
+   pros::delay(300);
+   setVIntake(0);
+
+
+ chassisAuton->driveToPoint({0_in, 24_in});
+
+
+   setIntake(0);
+
+ chassisAuton->driveToPoint({9_in, 15_in});
+
+   //First tower
+   setVIntake(-127);
+   pros::delay(1500);
+   setVIntake(0);
+
+ //---------------------------------------------------Second tower code
+
+ chassisAuton->driveToPoint({-9_in, 24_in}, true);
+
+   setIntake(127);
+
+ chassisAuton->driveToPoint({48_in, 24_in});
+
+
+   pros::delay(100);
+   setIntake(0);
+
+ chassisAuton->driveToPoint(0, 16_in});
+
+   //Second tower
+   setVIntake(-127);
+   pros::delay(1500);
+   setVIntake(0);
+
+ //---------------------------------------------------\\
+ //Third tower code
+ //---------------------------------------------------\\
+ chassisAuton->driveToPoint({0_in, 36_in}, true);
+
+   setIntake(127);
+
+ chassisAuton->setMaxVelocity(50);
+ chassisAuton->driveToPoint({48_in, 36_in});
+ chassisAuton->setMaxVelocity(100);
+
+ chassisAuton->driveToPoint({0_in, 24_in});
+
+   pros::delay(200);
+   setIntake(0);
+
+ chassisAuton->driveToPoint({10_in, 14_in});
+
+   //Third tower
+   setVIntake(-127);
+   pros::delay(1500);
+   setVIntake(0);
+
+ //---------------------------------------------------\\
+ //Fourth tower code
+ //---------------------------------------------------\\
+ chassisAuton->driveToPoint({-12_in, 36_in}, true);
+
+ setIntake(127);
+
+ chassisAuton->driveToPoint({0_in, 16_in});
+
+ //Bang into the wall to correct
+ chassisAuton->moveDistanceAsync(24_in);
+ pros::delay(1000);
+ chassisAuton->stop();
+
+ chassisAuton->setState({108_in, 11.5_in, -90_deg});
+
+ chassisAuton->driveToPoint({108_in, 72_in}, true);
+
+ setIntake(0);
+
+ chassisAuton->driveToPoint({22_in, 72_in});
+
+   //Fourth tower
+   setVIntake(-127);
+   pros::delay(1000);
+   setVIntake(0);
+
+ //---------------------------------------------------\\
+ //Fifth tower code
+ //---------------------------------------------------\\
+ chassisAuton->driveToPoint({-10_in, 72_in}, true);
+
+ setIntake(127);
+
+ chassisAuton->driveToPoint({0_in, 123_in});
+
+ setIntake(0);
+ 
+ chassisAuton->driveToPoint({12_in, 132_in});
+
+   //Fifth tower
+   setVIntake(-127);
+   pros::delay(1500);
+
+ //Move away from the fifth tower
+ chassisAuton->driveToPoint({8_ft, 8_ft});
+
+
+
+ setVIntake(0);
