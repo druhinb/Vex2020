@@ -1,5 +1,5 @@
 #include "vex.h"
 
-void setVintake(int power);
+void setVIntake(int power);
 
 void setVerticalMotors();

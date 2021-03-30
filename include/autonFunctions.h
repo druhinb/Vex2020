@@ -1,5 +1,2 @@
-void encoderAngleUpdate();
-void tareEncoders();
-void transcribe(int units, int velocity, bool reversed);
-void rotate(int degrees, int velocity, bool reversed);
-void checkOvershoot();
+void transcribe(double units, bool reversed);
+void rotate(int degrees, bool reversed);
