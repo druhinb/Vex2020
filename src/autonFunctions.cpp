@@ -10,7 +10,7 @@ double pi = 3.14159;
 //The radius of the wheel (change 3.25 to whatever the diameter is) 
 double wheelRadius = 3.25;
 //Horizontal distance between the encoder wheels
-double wheelTrack = 30.1;
+double wheelTrack = 10.5;
 //Total rEncoderValue
 double rEncoderValue;
 //The previous value of the rEncoder (used to compensate for overflow)
@@ -29,6 +29,37 @@ double angleStopThreshold = 3;
 //Robot's current target angle and whether or not it is moving right now
 double currTargetAngle = 10;
 bool movementActive = false;
+
+//Following are PID variables;
+double Kp = 0.5;
+double Ki = 0.2;
+double Kd = 0.1;
+
+double previous_error = 0.0;
+double integral = 0.0;
+double derivative = 0.0;
+
+double motionController(double error)
+{
+  integral += error;
+  if(error == 0)
+    integral = 0;
+  if (fabs(error) > 40)
+    integral = 0;
+  
+  derivative = error - previous_error;
+  previous_error = error;
+  return (Kp * error) + (Ki * integral) + (Kd * derivative);
+}
+
+void resetAllPIDValues()
+{
+  previous_error = 0;
+  integral = 0;
+  derivative = 0;
+}
+
+
 
 
 //Resets the positions of the left and right encoders
@@ -81,18 +112,23 @@ void checkOvershoot()
   {
     double direction = 1;
     //Curent rotation of the robot (relative to last reset)
-    double currentAngle = fabs((((direction) * (lEncoder.position(rotationUnits::deg) * pi / 180) * (pi * wheelRadius)) - ((direction) * (rEncoderValue * pi/180) * (pi * wheelRadius))) / wheelTrack) * 180/pi;
-    while (fabs(currTargetAngle - currentAngle) > 3)
+    double currentAngle = fabs(
+    ((direction) * (lEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))) - 
+    ((direction) * (rEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))))
+    / wheelTrack * (180/pi);
+    while (currTargetAngle - currentAngle > 3)
     {
-      encoderAngleUpdate();
-      currentAngle = fabs((((direction) * (lEncoder.position(rotationUnits::deg) * pi / 180) * (pi * wheelRadius)) - ((direction) * (rEncoder.position(rotationUnits::deg) * pi/180) * (pi * wheelRadius))) / wheelTrack) * 180/pi;
+          currentAngle = fabs(
+    ((direction) * (lEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))) - 
+    ((direction) * (rEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))))
+    / wheelTrack * (180/pi);
       //Finds which direction to turn to correct the movement, clockwise if angle is too little, counter
       //clockwise if the angle is too large
       direction = fabs(currTargetAngle - currentAngle) / currTargetAngle - currentAngle;
       setDrive(direction * 5, direction * 5);
       Brain.Screen.print(currentAngle);
       Brain.Screen.print(" ");
-      vex::wait(500, msec);
+      vex::wait(25, msec);
     }
   }
 }
@@ -122,28 +158,32 @@ void transcribe(int units, int velocity, bool reversed)
 void rotate(int degrees, int velocity, bool reversed)
 {
   //Sets the target angle for the Overshoot() function
+  resetAllPIDValues();
   currTargetAngle = degrees;
   movementActive = true;
   tareEncoders();
-  double direction = reversed ? -1 : 1;
-  //If direction is reversed, reverses the direction of the drive
-  setDrive(direction * velocity, direction * velocity);
+  double direction = reversed ? -1.0 : 1.0;
+  double controlVelocity;
+  
   //While the difference between target angle and current angle (calculated as L - R / W) is greater than some threshold...
   double currentAngle = fabs(
     ((direction) * (lEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))) - 
-    ((direction) * (rEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))) 
-    / wheelTrack) * (180/pi);
-  while(degrees - currentAngle > 5)
+    ((direction) * (rEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2)))) 
+    / wheelTrack * (180/pi);
+  while(degrees - currentAngle > 2)
   {
     currentAngle = fabs(
     ((direction) * (lEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))) - 
-    ((direction) * (rEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))) 
-    / wheelTrack) * (180/pi);
+    ((direction) * (rEncoder.position(rotationUnits::deg) * (pi / 180) * (wheelRadius / 2))))
+    / wheelTrack * (180/pi);
+    controlVelocity = motionController(degrees - currentAngle);
+    //If direction is reversed, reverses the direction of the drive
+    setDrive(direction * controlVelocity, direction * controlVelocity);
      
-    Brain.Screen.print(" L: ");
-    Brain.Screen.print(degrees - currentAngle );
+    Brain.Screen.print(controlVelocity);
+    Brain.Screen.print(" ");
     //Wait to not overwhelm the CPU
-    vex::wait(50, msec);
+    vex::wait(25, msec);
   } 
   //Stop the robot and check for any overshoot
   setDrive(0, 0);

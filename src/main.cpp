@@ -23,7 +23,7 @@ using namespace vex;
 vex::competition Competition;
 
 double desiredDriveVelocity = 0.5;
-void autonomous(void) {transcribe(12, 10, true); rotate(270, 10, false);}
+void autonomous(void) {rotate(90, 10, true);}
 
 // For some reason, tasks and semaphores hog too much CPU memory. As a result,
 // put the controller joystick update in this instead...
