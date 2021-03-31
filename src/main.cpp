@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
 /*    Author:       C:\Users\Administrator                                    */
@@ -25,85 +25,86 @@ vex::competition Competition;
 double desiredDriveVelocity = 0.5;
 void autonomous(void) 
 {
-  transcribe(12, false);
+  rotate(90, false);
   /*
-  setIntake(0);
-  transcribe(17.5, false);
-  setVIntake(300);
-  vex::wait(300, msec);
+  setIntake(-100);
+  transcribe(17 ,10, false);
+  setVIntake(-100);
+  vex::wait(100, msec);
   setVIntake(0);
 
-  rotate(90, true);
-  transcribe(12, false);
+  rotate(91, true);
+  transcribe(12, 10, false);
   setIntake(0);
   rotate(45, true);
-  transcribe(0.7 * 12, false);
+  transcribe(1.1 * 12,10, false);
 
   //First tower
-  setVIntake(100);
-  vex::wait(300,msec);
+  setVIntake(-100);
+  vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(0.7 * 12, true);
-  setIntake(100);
-  rotate(135, false);
-  transcribe(48, false);
+  transcribe(1.5 * 12,10, true);
+  setIntake(-100);
+  rotate(150, false);
+  transcribe(53.5, 10, false);
   vex::wait(100, msec);
   setIntake(0);
   rotate(90, true);
-  transcribe(0.5, false);
+  transcribe(6,10, false);
 
   //Second tower
-  setVIntake(100);
-  vex::wait(300,msec);
+  setVIntake(-100);
+  vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(1.5, true);
-  setIntake(100);
-  rotate(90, false);
-  transcribe(24, false);
+  transcribe(18,10, true);
+  setIntake(-100);
+  rotate(85, false);
+  transcribe(54.5,10, false);
   vex::wait(100, msec);
   rotate(90, true);
-  transcribe(12, false);
+  transcribe(13,10, false);
   setIntake(0);
   rotate(45, false);
-  transcribe(0.7 * 12, false);
+  transcribe(1.2 * 12,10, false);
 
   //Third tower
-  setVIntake(100);
-  vex::wait(300,msec);
+  setVIntake(-100);
+  vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(34, true);
+  transcribe(30,10, true);
   rotate(45, true);
-  setIntake(100);
+  setIntake(-100);
   setDrive(30, 30);
   vex::wait(1000, msec);
   setDrive(0, 0);
-  transcribe(60, true);
+  transcribe(60,10, true);
   setIntake(0);
   rotate(90, false);
-  transcribe(24, false);
+  transcribe(24,10, false);
 
   //Fourth tower
-  setVIntake(100);
-  vex::wait(300,msec);
+  setVIntake(-100);
+  vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(12, true);
+  transcribe(12,10, true);
   rotate(90, false);
-  setIntake(100);
-  transcribe(48, false);
+  setIntake(-100);
+  transcribe(48,10, false);
   rotate(45, true);
-  transcribe(0.7 * 12, false);
+  transcribe(0.7 * 12,10, false);
 
   //Fifth tower
-  setVIntake(100);
-  vex::wait(300,msec);
+  setVIntake(-100);
+  vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(24, true);
+  transcribe(24,10, true);
   */
+
 }
 
 // For some reason, tasks and semaphores hog too much CPU memory. As a result,
