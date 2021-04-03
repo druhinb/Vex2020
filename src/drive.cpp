@@ -1,15 +1,37 @@
 #include "vex.h"
 
-void setDrive(int left, int right)
+void setDrive(double left, double right)
 {
   //Sets the left motors to spin at the value for the left motors, and the 
   //right motors to spin at the value for the right motors as a percentage
   //of maximum power
-  LFDrive.spin(vex::directionType::fwd, left, velocityUnits::pct);
-  LBDrive.spin(vex::directionType::fwd, left, velocityUnits::pct);
-  RFDrive.spin(vex::directionType::fwd, right, velocityUnits::pct);
-  RBDrive.spin(vex::directionType::fwd, right, velocityUnits::pct);
+  left = (left / 127) * 12;
+  right = (right / 127) * 12;
+  LFDrive.spin(vex::directionType::fwd, left, voltageUnits::volt);
+  LBDrive.spin(vex::directionType::fwd, left, voltageUnits::volt);
+  RFDrive.spin(vex::directionType::fwd, right, voltageUnits::volt);
+  RBDrive.spin(vex::directionType::fwd, right, voltageUnits::volt);
 }
+
+void setDriveAuton(double left, double right)
+{
+    LFDrive.spin(vex::directionType::fwd, left, voltageUnits::volt);
+    LBDrive.spin(vex::directionType::fwd, left, voltageUnits::volt);
+    RFDrive.spin(vex::directionType::fwd, right, voltageUnits::volt);
+    RBDrive.spin(vex::directionType::fwd, right, voltageUnits::volt);
+}
+
+void setDriveOld(double left, double right)
+{
+  //Sets the left motors to spin at the value for the left motors, and the 
+  //right motors to spin at the value for the right motors as a percentage
+  //of maximum power
+  LFDrive.spin(vex::directionType::fwd, left, percentUnits::pct);
+  LBDrive.spin(vex::directionType::fwd, left, percentUnits::pct);
+  RFDrive.spin(vex::directionType::fwd, right, percentUnits::pct);
+  RBDrive.spin(vex::directionType::fwd, right, percentUnits::pct);
+}
+
 
 void resetDriveEncoders()
 {

@@ -25,76 +25,77 @@ vex::competition Competition;
 double desiredDriveVelocity = 0.5;
 void autonomous(void) 
 {
-  rotate(90, false);
-  /*
   setIntake(-100);
-  transcribe(17 ,10, false);
+  transcribe(18.00, 30, false);
   setVIntake(-100);
   vex::wait(100, msec);
   setVIntake(0);
-
-  rotate(91, true);
-  transcribe(12, 10, false);
+  rotate(90.00, true);
+  tareEncoders();
+  transcribe(13.00, 30, false);
+  tareEncoders();
   setIntake(0);
-  rotate(45, true);
-  transcribe(1.1 * 12,10, false);
+  rotate(45.00*0.66, true);
+  tareEncoders();
+  transcribe(12.00, 30, false);
+  tareEncoders();
 
-  //First tower
   setVIntake(-100);
   vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(1.5 * 12,10, true);
-  setIntake(-100);
-  rotate(150, false);
-  transcribe(53.5, 10, false);
-  vex::wait(100, msec);
-  setIntake(0);
-  rotate(90, true);
-  transcribe(6,10, false);
+  setIntake(127);
+  transcribe(0.7 * 12.00, 30, true);
+  rotate(123.00, false);
+  transcribe(20.00, 30, false);
+  transcribe(52.00, 30, false);
+  rotate(90.00, true);
+  transcribe(6.00, 30, false);
 
   //Second tower
   setVIntake(-100);
   vex::wait(600, msec);
   setVIntake(0);
+  tareEncoders();
 
-  transcribe(18,10, true);
+  transcribe(20.00,10, true);
   setIntake(-100);
-  rotate(85, false);
-  transcribe(54.5,10, false);
+  tareEncoders();
+  rotate(93.00, false);
+  tareEncoders();
+  transcribe(18.00, 30, false);
+  transcribe(52.00, 30, false);
   vex::wait(100, msec);
-  rotate(90, true);
-  transcribe(13,10, false);
+  rotate(90.00, true);
+  transcribe(20.00,10, false);
   setIntake(0);
-  rotate(45, false);
-  transcribe(1.2 * 12,10, false);
+  rotate(53.00, false);
+  transcribe(1.2 * 12,30, false);
 
   //Third tower
   setVIntake(-100);
   vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(30,10, true);
-  rotate(45, true);
+  transcribe(30.00,30, true);
+  rotate(45.00, true);
   setIntake(-100);
-  setDrive(30, 30);
-  vex::wait(1000, msec);
-  setDrive(0, 0);
-  transcribe(60,10, true);
+  transcribe(12.00, 30, false);
+  transcribe(60.00,30, true);
   setIntake(0);
   rotate(90, false);
-  transcribe(24,10, false);
+  transcribe(24.00,10, false);
 
   //Fourth tower
   setVIntake(-100);
   vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(12,10, true);
-  rotate(90, false);
+  transcribe(12.00,10, true);
+  rotate(90.00, false);
   setIntake(-100);
   transcribe(48,10, false);
-  rotate(45, true);
+  rotate(45.00, true);
   transcribe(0.7 * 12,10, false);
 
   //Fifth tower
@@ -102,8 +103,8 @@ void autonomous(void)
   vex::wait(600, msec);
   setVIntake(0);
 
-  transcribe(24,10, true);
-  */
+  transcribe(24.00,10, true);
+  
 
 }
 
@@ -119,12 +120,12 @@ void usercontrol(void) {
     if (abs(right_joystick) < 7)
       right_joystick = 0;
     
-    setDrive((left_joystick / 3 + right_joystick) / 2, (left_joystick / 3 - right_joystick) / 2);
+    setDrive((left_joystick + right_joystick) / 1.3, (left_joystick - right_joystick) / 1.3);
     
     setIntakeMotors();
     setVerticalMotors();
     
-    vex::wait(10, msec);
+    vex::wait(20, msec);
   }
 }
 

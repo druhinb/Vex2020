@@ -1,7 +1,11 @@
 #include "vex.h"
 
 
-void setDrive(int left, int right);
+void setDrive(double left, double right);
+
+void setDriveOld(double left, double right);
+
+void setDriveAuton(double left, double right);
 
 void resetDriveEncoders();
 
