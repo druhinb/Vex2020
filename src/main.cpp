@@ -19,37 +19,43 @@
 #include "vex.h"
 
 using namespace vex;
+#include "iostream"
 
+using namespace std;
+using std::cout;
+using std::endl;
 vex::competition Competition;
 
 double desiredDriveVelocity = 0.5;
 void autonomous(void) 
 {
   setIntake(-100);
-  transcribe(18.00, 30, false);
+  transcribe(18.00, 10, false);
   setVIntake(-100);
   vex::wait(100, msec);
   setVIntake(0);
   rotate(90.00, true);
   tareEncoders();
-  transcribe(13.00, 30, false);
+  transcribe(19.00, 30, false);
   tareEncoders();
   setIntake(0);
-  rotate(45.00*0.66, true);
+  rotate(40.00, true);
   tareEncoders();
-  transcribe(12.00, 30, false);
+  transcribe(7.00, 30, false);
   tareEncoders();
 
   setVIntake(-100);
   vex::wait(600, msec);
   setVIntake(0);
 
-  setIntake(127);
-  transcribe(0.7 * 12.00, 30, true);
-  rotate(123.00, false);
+
+  transcribe(0.1 * 12.00, 30, true);
+  rotate(137.00, false);
+    setIntake(-127);
   transcribe(20.00, 30, false);
-  transcribe(52.00, 30, false);
+  transcribe(47.5, 30, false);
   rotate(90.00, true);
+  setIntake(0);
   transcribe(6.00, 30, false);
 
   //Second tower
@@ -58,19 +64,19 @@ void autonomous(void)
   setVIntake(0);
   tareEncoders();
 
-  transcribe(20.00,10, true);
+  transcribe(22.50,10, true);
   setIntake(-100);
   tareEncoders();
-  rotate(93.00, false);
+  rotate(90.00, false);
   tareEncoders();
-  transcribe(18.00, 30, false);
-  transcribe(52.00, 30, false);
+  transcribe(48.00, 30, false);
+  transcribe(18.00, 20, false);
   vex::wait(100, msec);
   rotate(90.00, true);
-  transcribe(20.00,10, false);
+  transcribe(22.00,10, false);
   setIntake(0);
-  rotate(53.00, false);
-  transcribe(1.2 * 12,30, false);
+  rotate(50.00, false);
+  transcribe(0.8 * 12,30, false);
 
   //Third tower
   setVIntake(-100);
@@ -78,13 +84,13 @@ void autonomous(void)
   setVIntake(0);
 
   transcribe(30.00,30, true);
-  rotate(45.00, true);
+  rotate(52.00, true);
   setIntake(-100);
-  transcribe(12.00, 30, false);
-  transcribe(60.00,30, true);
+  transcribe(26.00, 30, false);
+  transcribe(68.00,30, true);
   setIntake(0);
   rotate(90, false);
-  transcribe(24.00,10, false);
+  transcribe(24.00,30, false);
 
   //Fourth tower
   setVIntake(-100);
@@ -104,7 +110,6 @@ void autonomous(void)
   setVIntake(0);
 
   transcribe(24.00,10, true);
-  
 
 }
 
